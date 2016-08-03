@@ -140,6 +140,8 @@ public class DBManager {
     public static ContentValues alarmToContentValues(AlarmModel alarmModel) {
         ContentValues values = new ContentValues();
         values.put("reminderId", alarmModel.getReminderId());
+        values.put("timeYear",alarmModel.getTimeYear());
+        values.put("timeMonth",alarmModel.getTimeMonth());
         values.put("timeHour", alarmModel.getTimeHour());
         values.put("timeMinute", alarmModel.getTimeMinute());
         values.put("repeatWeekly", alarmModel.isRepeatWeekly());
@@ -168,6 +170,8 @@ public class DBManager {
     public static AlarmModel cursorToAlarm(Cursor cursor) {
         AlarmModel alarmModel = new AlarmModel();
         alarmModel.setReminderId(cursor.getLong(cursor.getColumnIndex("reminderId")));
+        alarmModel.setTimeYear(cursor.getInt(cursor.getColumnIndex("timeYear")));
+        alarmModel.setTimeMonth(cursor.getInt(cursor.getColumnIndex("timeMonth")));
         alarmModel.setTimeHour(cursor.getInt(cursor.getColumnIndex("timeHour")));
         alarmModel.setTimeMinute(cursor.getInt(cursor.getColumnIndex("timeMinute")));
         alarmModel.setRepeatWeekly(cursor.getInt(cursor.getColumnIndex("repeatWeekly")) == 1);

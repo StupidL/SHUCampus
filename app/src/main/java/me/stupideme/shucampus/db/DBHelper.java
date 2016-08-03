@@ -17,6 +17,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String ALARM_TABLE_NAME = "alarm";
     private static final String ALARM_NAME = "name";
     private static final String ALARM_REMINDER_ID = "reminderID";
+    private static final String ALARM_TIME_YEAR = "year";
+    private static final String ALARM_TIME_MONTH = "month";
     private static final String ALARM_TIME_HOUR = "hour";
     private static final String ALARM_TIME_MINUTE = "minute";
     private static final String ALARM_REPEAT_DAYS = "days";
@@ -42,7 +44,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ALARM = "CREATE TABLE " + ALARM_TABLE_NAME + "("
             + "_ID PRIMARY KEY AUTOINCREMENT, "
-            + ALARM_NAME + ", " + ALARM_REMINDER_ID + ", " + ALARM_TIME_HOUR + ", " + ALARM_TIME_MINUTE + ", "
+            + ALARM_NAME + ", " + ALARM_REMINDER_ID + ", " + ALARM_TIME_YEAR + ", " + ALARM_TIME_MONTH + ", "
+            + ALARM_TIME_HOUR + ", " + ALARM_TIME_MINUTE + ", "
             + ALARM_REPEAT_DAYS + ", " + ALARM_REPEAT_WEEKLY + ", " + ALARM_TONE + ", " + ALARM_ENABLED
             + ")";
 

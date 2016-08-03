@@ -18,70 +18,33 @@ import me.stupideme.shucampus.db.DBManager;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        setAlarms(context);
+        cancelAlarms(context);
+
+        resetAlarms(context);
     }
 
-    private static void setAlarms(Context context) {
+    private void resetAlarms(Context context) {
 
-        cancelAlarms(context);  //首先取消全部有效的闹钟
-
-        List<AlarmModel> list = DBManager.getAllAlarm();    //获取所有的闹钟
-        for (AlarmModel model : list) {
-            if(model.isEnabled()){
-                PendingIntent pIntent = createPendingIntent(context, model);
-
-                //通过Calendar对象，设置闹钟时间
+        List<AlarmModel> list = DBManager.getAllAlarm();
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (!list.isEmpty()) {
+            for (AlarmModel model : list) {
                 Calendar calendar = Calendar.getInstance();
+                long currentTime = calendar.getTimeInMillis();
+                calendar.set(Calendar.YEAR, model.getTimeYear());
+                calendar.set(Calendar.MONTH, model.getTimeMonth());
                 calendar.set(Calendar.HOUR_OF_DAY, model.getTimeHour());
                 calendar.set(Calendar.MINUTE, model.getTimeMinute());
-                calendar.set(Calendar.SECOND, 00);      //没有考虑秒，可以在AlarmModel里面加上这个属性
-
-
-                //Find next time to set
-                final int nowDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-                final int nowHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                final int nowMinute = Calendar.getInstance().get(Calendar.MINUTE);
-                boolean alarmSet = false;
-
-                //First check if it's later in the week
-                //Calendar.SUNDAY = 1, 在repeatingDays[]数组里面下标为0
-                for (int dayOfWeek = Calendar.SUNDAY; dayOfWeek <= Calendar.SATURDAY; ++dayOfWeek) {
-                    if (model.ifRepeat(dayOfWeek - 1) && dayOfWeek >= nowDay && //处于今天之后的时间，并且重复
-                            !(dayOfWeek == nowDay && model.getTimeHour() < nowHour) &&  //在今天，但是在现在的小时之后
-                            !(dayOfWeek == nowDay && model.getTimeHour() == nowHour && model.getTimeMinute() <= nowMinute)) //在现在的小时，但是要在现在的分钟之后
-                    {
-                        //以上条件即：闹钟设置的时间在当前时间之后
-                        calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);  //根据闹钟设置day_of_week
-                        setAlarm(context, calendar, pIntent);           //设置闹钟
-                        alarmSet = true;
-                        break;
-                    }
-                }
-
-                //设置的时间在当前时间之前，但是设置了重复
-                if (!alarmSet) {
-                    for (int dayOfWeek = Calendar.SUNDAY; dayOfWeek <= Calendar.SATURDAY; ++dayOfWeek) {
-                        //如果闹钟设置了重复，并且每周都重复，并且在当前周已经过去了
-                        if (model.ifRepeat(dayOfWeek - 1) && dayOfWeek <= nowDay && model.isRepeatWeekly()) {
-                            calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
-                            calendar.add(Calendar.WEEK_OF_YEAR, 1);
-                            setAlarm(context, calendar, pIntent);
-                            alarmSet = true;
-                            break;
-                        }
+                long alarmTime = calendar.getTimeInMillis();
+                if (currentTime < alarmTime) {
+                    PendingIntent pi = createPendingIntent(context, model);
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                        am.setExact(AlarmManager.RTC_WAKEUP, alarmTime, pi);
+                    } else {
+                        am.set(AlarmManager.RTC_WAKEUP, alarmTime, pi);
                     }
                 }
             }
-        }
-
-    }
-
-    private static void setAlarm(Context context, Calendar calendar, PendingIntent pIntent) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pIntent);
-        } else {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pIntent);
         }
     }
 
@@ -90,23 +53,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         List<AlarmModel> list = DBManager.getAllAlarm();
         if (!list.isEmpty()) {
             for (AlarmModel model : list) {
-                if (model.isEnabled()) {
-                    PendingIntent pendingIntent = createPendingIntent(context, model);
-                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                    alarmManager.cancel(pendingIntent); //通过AlarmManager将pendingIntent发送出去
-                }
+                PendingIntent pendingIntent = createPendingIntent(context, model);
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarmManager.cancel(pendingIntent);
             }
         }
     }
 
     private static PendingIntent createPendingIntent(Context context, AlarmModel model) {
-        Intent intent = new Intent(context, AlarmService.class);
-        intent.putExtra("id", model.getReminderId());
-        intent.putExtra("name", model.getName());
-        intent.putExtra("timeHour", model.getTimeHour());
-        intent.putExtra("timeMinute", model.getTimeMinute());
-        intent.putExtra("alarmTone", model.getAlarmTone().toString());
+        Intent intent = new Intent(context, AlarmService.class);    //可以直接跳到Alarm界面，不需经过service
+        intent.putExtra("reminderId", model.getReminderId());   //reminderId是唯一的
 
-        return PendingIntent.getService(context, (int) model.getReminderId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //return PendingIntent.getService(context, (int) model.getReminderId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        //return PendingIntent.getActivity(context,0,intent,0);
     }
 }

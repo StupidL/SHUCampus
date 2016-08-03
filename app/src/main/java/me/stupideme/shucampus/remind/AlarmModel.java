@@ -7,6 +7,8 @@ import android.net.Uri;
  */
 
 public class AlarmModel {
+    private int timeYear;
+    private int timeMonth;
     private int timeHour;
     private int timeMinute;
     private boolean repeatWeekly;
@@ -90,5 +92,21 @@ public class AlarmModel {
 
     public void setReminderId(long reminderId) {
         this.reminderId = reminderId;
+    }
+
+    public int getTimeYear() {
+        return timeYear;
+    }
+
+    public void setTimeYear(int timeYear) {
+        this.timeYear = timeYear;
+    }
+
+    public int getTimeMonth() {
+        return timeMonth;
+    }
+
+    public void setTimeMonth(int timeMonth) {
+        this.timeMonth = timeMonth;
     }
 }
