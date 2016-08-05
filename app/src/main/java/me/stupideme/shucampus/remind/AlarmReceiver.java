@@ -61,11 +61,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     private static PendingIntent createPendingIntent(Context context, AlarmModel model) {
-        Intent intent = new Intent(context, AlarmService.class);    //可以直接跳到Alarm界面，不需经过service
+        Intent intent = new Intent(context, NotificationService.class);
         intent.putExtra("reminderId", model.getReminderId());   //reminderId是唯一的
 
-        //return PendingIntent.getService(context, (int) model.getReminderId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        return PendingIntent.getService(context, (int) model.getReminderId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //return PendingIntent.getBroadcast(context, 0, intent, 0);
         //return PendingIntent.getActivity(context,0,intent,0);
     }
 }

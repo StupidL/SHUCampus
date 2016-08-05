@@ -53,9 +53,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".remind.AlarmService"
+            android:name=".remind.NotificationService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <receiver android:name=".remind.AlarmReceiver">
             <intent-filter>
@@ -66,7 +66,14 @@
         <activity
             android:name=".remind.RemindersActivity"
             android:label="@string/title_activity_reminders"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".remind.ReminderDetailActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="">
+
+        </activity>
     </application>
 
 </manifest>

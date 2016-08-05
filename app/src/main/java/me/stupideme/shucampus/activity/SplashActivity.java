@@ -41,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);
+        Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);      //init bmob sdk
 
         ImageView imageView = (ImageView) findViewById(R.id.image);
 
@@ -85,5 +85,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        handler.removeCallbacks(runnable);
     }
 }

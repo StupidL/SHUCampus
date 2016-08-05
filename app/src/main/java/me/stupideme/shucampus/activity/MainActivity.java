@@ -29,9 +29,11 @@ import com.pacific.adapter.RecyclerAdapterHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.MainRecyclerViewAdapter;
 import me.stupideme.shucampus.model.Event;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -80,10 +84,10 @@ public class MainActivity extends AppCompatActivity
 
         List<Event> list = new ArrayList<>(20);
 
-//        Event event = new Event();
-//        MyUser user = new MyUser();
-//        user.setUsername("StupidL");
-//        event.setAuthor(user);
+        Event event = new Event();
+        MyUser user = new MyUser();
+        user.setUsername("StupidL");
+        event.setAuthor(user);
 //
 //        event.save(new SaveListener<String>() {
 //            @Override
