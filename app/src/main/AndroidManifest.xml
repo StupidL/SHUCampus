@@ -71,9 +71,8 @@
             android:name=".remind.ReminderDetailActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity="">
-
-        </activity>
+            android:taskAffinity=""></activity>
+        <activity android:name=".remind.AddReminderActivity"></activity>
     </application>
 
 </manifest>

@@ -46,6 +46,11 @@ public class DBManager {
         db.insert("reminder", null, values);
     }
 
+    public static void insertReminder(ReminderModel model) {
+        ContentValues values = reminderToContentValues(model);
+        db.insert("reminder", null, values);
+    }
+
     public static void deleteReminder(long reminderId) {
         db.delete("reminder", "reminderId=?", new String[]{String.valueOf(reminderId)});
     }
@@ -115,6 +120,11 @@ public class DBManager {
         db.insert("alarm", null, values);
     }
 
+    public static void insertAlarm(AlarmModel model) {
+        ContentValues values = alarmToContentValues(model);
+        db.insert("alarm", null, values);
+    }
+
     public static void deleteAlarm(long reminderId) {
         db.delete("alarm", "reminderId=?", new String[]{String.valueOf(reminderId)});
     }
@@ -140,8 +150,8 @@ public class DBManager {
     public static ContentValues alarmToContentValues(AlarmModel alarmModel) {
         ContentValues values = new ContentValues();
         values.put("reminderId", alarmModel.getReminderId());
-        values.put("timeYear",alarmModel.getTimeYear());
-        values.put("timeMonth",alarmModel.getTimeMonth());
+        values.put("timeYear", alarmModel.getTimeYear());
+        values.put("timeMonth", alarmModel.getTimeMonth());
         values.put("timeHour", alarmModel.getTimeHour());
         values.put("timeMinute", alarmModel.getTimeMinute());
         values.put("repeatWeekly", alarmModel.isRepeatWeekly());
@@ -208,6 +218,11 @@ public class DBManager {
      */
 
     public static void insertClass(ContentValues values) {
+        db.insert("class", null, values);
+    }
+
+    public static void insertClass(ClassModel model) {
+        ContentValues values = classToContentValues(model);
         db.insert("class", null, values);
     }
 

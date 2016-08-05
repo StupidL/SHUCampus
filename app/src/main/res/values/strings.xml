@@ -27,4 +27,7 @@
     <string name="splash_content_description">上大校园</string>
     <string name="title_activity_settings">设置</string>
     <string name="title_activity_reminders">RemindersActivity</string>
+    <string name="item_reminder_content">内容</string>
+    <string name="item_reminder_time">时间</string>
+    <string name="item_reminder_title">标题</string>
 </resources>

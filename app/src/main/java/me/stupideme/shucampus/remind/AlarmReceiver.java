@@ -18,9 +18,10 @@ import me.stupideme.shucampus.db.DBManager;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        cancelAlarms(context);
-
-        resetAlarms(context);
+        if (intent.getAction().equals("me.stupidme.action.UPDATE_ALARM")) {
+            cancelAlarms(context);
+            resetAlarms(context);
+        }
     }
 
     private void resetAlarms(Context context) {
