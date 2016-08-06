@@ -1,8 +1,6 @@
 package me.stupideme.shucampus.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,7 +8,7 @@ import android.view.View;
 import me.stupideme.shucampus.R;
 
 /**
- * Created by 56211 on 2016/8/2.
+ * Created by StupidL on 2016/8/2.
  */
 public class ProfileActivity extends AppCompatActivity{
 

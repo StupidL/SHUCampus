@@ -3,27 +3,18 @@ package me.stupideme.shucampus.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import cn.bmob.v3.Bmob;
-import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
 
 /**
- * Created by 56211 on 2016/8/1.
+ * Created by StupidL on 2016/8/1.
  */
 
 public class SplashActivity extends AppCompatActivity {
@@ -41,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);      //init bmob sdk
+
 
         ImageView imageView = (ImageView) findViewById(R.id.image);
 

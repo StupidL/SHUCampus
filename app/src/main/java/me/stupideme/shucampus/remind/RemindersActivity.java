@@ -24,7 +24,19 @@ public class RemindersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RemindersActivity.this.finish();
+            }
+        });
+
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setShowHideAnimationEnabled(true);
+
 
         list = DBManager.getAllReminder();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -37,7 +49,7 @@ public class RemindersActivity extends AppCompatActivity {
                 intent.putExtra("title", "");
                 intent.putExtra("content", "");
                 intent.putExtra("id", 0L);
-                startActivityForResult(intent,0x100);
+                startActivityForResult(intent, 0x100);
             }
         });
 
@@ -52,8 +64,8 @@ public class RemindersActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent){
-        if(resultCode == 0x102){
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (resultCode == 0x102) {
             list.clear();
             list = DBManager.getAllReminder();
             adapter.notifyDataSetChanged();

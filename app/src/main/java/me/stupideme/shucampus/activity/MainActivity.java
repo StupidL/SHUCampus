@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,31 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import com.melnykov.fab.FloatingActionButton;
-import com.pacific.adapter.Adapter;
-import com.pacific.adapter.AdapterHelper;
-import com.pacific.adapter.RecyclerAdapter;
-import com.pacific.adapter.RecyclerAdapterHelper;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import de.hdodenhof.circleimageview.CircleImageView;
 import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.adapter.MainRecyclerViewAdapter;
-import me.stupideme.shucampus.model.Event;
-import me.stupideme.shucampus.model.MyUser;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,58 +52,18 @@ public class MainActivity extends AppCompatActivity
         navigationView.setItemIconTintList(null);
 
         View view = navigationView.getHeaderView(0);
-        View view1 = view.findViewById(R.id.imageView);
-        view1.setOnClickListener(new View.OnClickListener() {
+        View head = view.findViewById(R.id.imageView);
+        head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             }
         });
 
-        List<Event> list = new ArrayList<>(20);
-
-        Event event = new Event();
-        MyUser user = new MyUser();
-        user.setUsername("StupidL");
-        event.setAuthor(user);
-//
-//        event.save(new SaveListener<String>() {
-//            @Override
-//            public void done(String s, BmobException e) {
-//                if(null==e){
-//                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         fab.attachToRecyclerView(recyclerView);
-        // recyclerView.setAdapter(new Arra);
 
-//        ListView listView = (ListView) findViewById(R.id.list_view);
-//        fab.attachToListView(listView);
-//        listView.setAdapter(new ArrayAdapter<CardView>(this,android.R.layout.simple_list_item_1,list));
-
-        RecyclerAdapter<Event> adapter = new RecyclerAdapter<Event>(this, list, R.layout.item_recycler_view) {
-            @Override
-            protected void convert(RecyclerAdapterHelper helper, Event item) {
-                final int position = helper.getOldPosition();
-                helper.setImageResource(R.id.head_image, R.drawable.head_male)
-                        .setText(R.id.head_name, "StupidL")
-                        .setText(R.id.head_time, "04:02")
-                        .setText(R.id.content, "Hello World")
-                        .setImageResource(R.id.event_image, R.drawable.nav_header)
-                        .getItemView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "Clicked Item" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-        };
-       // recyclerView.setAdapter(adapter);
 
     }
 
