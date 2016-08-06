@@ -16,8 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.melnykov.fab.FloatingActionButton;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
+import me.stupideme.shucampus.remind.RemindersActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -113,6 +115,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_schedule) {
 
+            startActivity(new Intent(MainActivity.this, RemindersActivity.class));
+
         } else if (id == R.id.nav_settings) {
 
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
@@ -131,6 +135,10 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("hasExit", true);
             editor.apply();
+
+//            BmobUser user = BmobUser.getCurrentUser();
+//            user.logOut();
+
             startActivity(new Intent(MainActivity.this, LoginActivityMaterial.class));
             MainActivity.this.finish();
         }

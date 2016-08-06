@@ -16,17 +16,18 @@ import me.stupideme.shucampus.db.DBManager;
  */
 
 public class AlarmReceiver extends BroadcastReceiver {
+    private DBManager manager;
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("me.stupidme.action.UPDATE_ALARM")) {
+            manager = DBManager.getInstance(context);
             cancelAlarms(context);
             resetAlarms(context);
         }
     }
 
     private void resetAlarms(Context context) {
-
-        List<AlarmModel> list = DBManager.getAllAlarm();
+        List<AlarmModel> list = manager.getAllAlarm();
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (!list.isEmpty()) {
             for (AlarmModel model : list) {
@@ -49,9 +50,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
-    private static void cancelAlarms(Context context) {
+    private  void cancelAlarms(Context context) {
 
-        List<AlarmModel> list = DBManager.getAllAlarm();
+        List<AlarmModel> list = manager.getAllAlarm();
         if (!list.isEmpty()) {
             for (AlarmModel model : list) {
                 PendingIntent pendingIntent = createPendingIntent(context, model);

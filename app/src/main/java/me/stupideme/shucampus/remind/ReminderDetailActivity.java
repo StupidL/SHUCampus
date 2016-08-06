@@ -22,7 +22,8 @@ public class ReminderDetailActivity extends AppCompatActivity {
         AppCompatTextView eventContent = (AppCompatTextView) findViewById(R.id.alarm_content);
 
         if (id != -1L) {
-            ReminderModel model = DBManager.getReminderModel(id);
+            DBManager manager = DBManager.getInstance(ReminderDetailActivity.this);
+            ReminderModel model = manager.getReminderModel(id);
             String title = model.getTitle();
             String content = model.getContent();
             eventTitle.setText(title);

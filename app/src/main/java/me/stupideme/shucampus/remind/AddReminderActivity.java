@@ -7,11 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -30,10 +30,11 @@ public class AddReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("编辑提醒");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("编辑提醒");
 
         title = (EditText) findViewById(R.id.edit_title);
         content = (EditText) findViewById(R.id.edit_content);
@@ -59,15 +60,20 @@ public class AddReminderActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         final ReminderModel model = new ReminderModel();
+        final AlarmModel alarmModel = new AlarmModel();
         switch (item.getItemId()) {
             case R.id.actions_save:
 
                 if (model.getId() != 0L) {
                     model.setTitle(title.getText().toString());
                     model.setContent(content.getText().toString());
-                    DBManager.insertReminder(model);
-                    if (tmpModel.getId() != 0L)
-                        DBManager.deleteReminder(tmpModel.getId());
+                    DBManager manager = DBManager.getInstance(AddReminderActivity.this);
+                    manager.insertReminder(model);
+                    manager.insertAlarm(alarmModel);
+                    if (tmpModel.getId() != 0L) {
+                        manager.deleteReminder(tmpModel.getId());
+                        manager.deleteAlarm(tmpModel.getId());
+                    }
                     //notify receiver
                     Intent intent = new Intent(AddReminderActivity.this, AlarmReceiver.class);
                     intent.setAction("me.stupidme.action.UPDATE_ALARM");
@@ -92,7 +98,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 final int minute = calendar.get(Calendar.MINUTE);
 
 
-                DatePickerDialog dialog = new DatePickerDialog(AddReminderActivity.this, new DatePickerDialog.OnDateSetListener() {
+                new DatePickerDialog(AddReminderActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         final Calendar calendar = Calendar.getInstance();
@@ -100,17 +106,27 @@ public class AddReminderActivity extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, monthOfYear);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
+
+                        alarmModel.setTimeYear(year);
+                        alarmModel.setTimeMonth(monthOfYear);
+                        alarmModel.setTimeDay(dayOfMonth);
+
                         new TimePickerDialog(AddReminderActivity.this, new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                 calendar.set(Calendar.MINUTE, minute);
+                                alarmModel.setTimeHour(hourOfDay);
+                                alarmModel.setTimeMinute(minute);
                             }
                         }, hour, minute, true).show();
 
                         model.setId(calendar.getTimeInMillis());
+                        alarmModel.setReminderId(calendar.getTimeInMillis());
+
+
                     }
-                }, year, month, day);
+                }, year, month, day).show();
 
                 break;
         }

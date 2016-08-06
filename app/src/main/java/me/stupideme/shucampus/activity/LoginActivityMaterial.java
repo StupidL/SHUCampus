@@ -12,6 +12,7 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import me.stupideme.shucampus.R;
+import me.stupideme.shucampus.model.MyUser;
 import shem.com.materiallogin.MaterialLoginView;
 import shem.com.materiallogin.MaterialLoginViewListener;
 
@@ -73,14 +74,13 @@ public class LoginActivityMaterial extends AppCompatActivity {
                 final String name = loginUser.getEditText().getText().toString();
                 final String pwd = loginPass.getEditText().getText().toString();
 
-                BmobUser user = new BmobUser();
+                BmobUser user = new MyUser();
                 user.setUsername(name);
                 user.setPassword(pwd);
                 user.login(new SaveListener<BmobUser>() {
                     @Override
-                    public void done(BmobUser bmobUser, BmobException e) {
+                    public void done(BmobUser myUser, BmobException e) {
                         if (e == null) {
-
                             SharedPreferences preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
                             editor.putString("UserName", name);

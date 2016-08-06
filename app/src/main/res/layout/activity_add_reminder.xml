@@ -6,8 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="16dp"
     >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_gravity="start|top"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.net.Uri;
 public class AlarmModel {
     private int timeYear;
     private int timeMonth;
+    private int timeDay;
     private int timeHour;
     private int timeMinute;
     private boolean repeatWeekly;
@@ -108,5 +109,13 @@ public class AlarmModel {
 
     public void setTimeMonth(int timeMonth) {
         this.timeMonth = timeMonth;
+    }
+
+    public int getTimeDay() {
+        return timeDay;
+    }
+
+    public void setTimeDay(int timeDay) {
+        this.timeDay = timeDay;
     }
 }

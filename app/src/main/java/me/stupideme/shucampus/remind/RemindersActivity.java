@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,6 +19,7 @@ public class RemindersActivity extends AppCompatActivity {
 
     private List<ReminderModel> list;
     private ReminderRecyclerAdapter adapter;
+    private DBManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,9 @@ public class RemindersActivity extends AppCompatActivity {
         getSupportActionBar().setShowHideAnimationEnabled(true);
 
 
-        list = DBManager.getAllReminder();
+        manager = DBManager.getInstance(RemindersActivity.this);
+
+        list = manager.getAllReminder();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +60,7 @@ public class RemindersActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.reminders_activity_rv);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter = new ReminderRecyclerAdapter(list, R.layout.item_reminder, RemindersActivity.this);
         recyclerView.setAdapter(adapter);
@@ -67,7 +72,7 @@ public class RemindersActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == 0x102) {
             list.clear();
-            list = DBManager.getAllReminder();
+            list = manager.getAllReminder();
             adapter.notifyDataSetChanged();
         }
     }

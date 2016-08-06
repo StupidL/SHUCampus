@@ -79,8 +79,9 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
 
     public void remove(ReminderModel model){
         int position = dataSet.indexOf(model);
-        DBManager.deleteReminder(model.getId());
-        DBManager.deleteAlarm(model.getId());
+        DBManager manager = DBManager.getInstance(context);
+        manager.deleteReminder(model.getId());
+        manager.deleteAlarm(model.getId());
         Intent intent = new Intent(context,AlarmReceiver.class);
         intent.setAction("me.stupidme.action.UPDATE_ALARM");
         context.sendBroadcast(intent);
