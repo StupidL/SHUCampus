@@ -31,4 +31,6 @@
     <string name="item_reminder_time">时间</string>
     <string name="item_reminder_title">标题</string>
     <string name="title_activity_classes">ClassesActivity</string>
+
+    <string name="color_picker_dialog">选择颜色</string>
 </resources>

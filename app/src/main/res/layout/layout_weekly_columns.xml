@@ -22,11 +22,11 @@
         android:id="@+id/Friday"
         layout="@layout/layout_column_widget" />
 
-    <!--<include-->
-        <!--android:id="@+id/Saturday"-->
-        <!--layout="@layout/layout_column_widget" />-->
+    <include
+        android:id="@+id/Saturday"
+        layout="@layout/layout_column_widget" />
 
-    <!--<include-->
-        <!--android:id="@+id/Sunday"-->
-        <!--layout="@layout/layout_column_widget" />-->
+    <include
+        android:id="@+id/Sunday"
+        layout="@layout/layout_column_widget" />
 </merge>

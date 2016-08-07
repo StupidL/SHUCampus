@@ -75,9 +75,14 @@
             android:taskAffinity="" />
         <activity android:name=".remind.AddReminderActivity" />
         <activity
+            android:name=".course.ShowClassActivity"
+            android:label="@string/title_activity_classes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".course.ClassesActivity"
             android:label="@string/title_activity_classes"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".course.AddClassActivity"></activity>
     </application>
 
 </manifest>

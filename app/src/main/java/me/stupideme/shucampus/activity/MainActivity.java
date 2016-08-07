@@ -19,6 +19,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
+import me.stupideme.shucampus.course.ShowClassActivity;
 import me.stupideme.shucampus.remind.RemindersActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -112,6 +113,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_mark) {
 
         } else if (id == R.id.nav_class) {
+
+            startActivity(new Intent(MainActivity.this, ShowClassActivity.class));
 
         } else if (id == R.id.nav_schedule) {
 

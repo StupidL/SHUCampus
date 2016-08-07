@@ -13,7 +13,7 @@ import me.stupideme.shucampus.db.DBManager;
 
 public class CampusApp extends Application {
 
-    private DBManager manager;
+    public static DBManager manager;
 
     @Override
     public void onCreate(){
