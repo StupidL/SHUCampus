@@ -4,7 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
-    useLibrary 'org.apache.http.legacy'
+    //useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "me.stupideme.shucampus"
@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha5'
     compile 'com.github.shem8:material-login:1.4.0'
     compile 'cn.bmob.android:bmob-sdk:3.5.0'
     compile 'cn.bmob.android:bmob-push:0.8'

@@ -10,9 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.stupideme.shucampus.activity.MainActivity;
 import me.stupideme.shucampus.remind.AlarmModel;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.course.ClassModel;
 import me.stupideme.shucampus.remind.ReminderModel;
 
 

@@ -21,10 +21,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".CampusApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo3"
         android:supportsRtl="true"
-        android:name=".CampusApp"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activity.MainActivity"
@@ -72,8 +72,12 @@
             android:name=".remind.ReminderDetailActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:taskAffinity=""></activity>
-        <activity android:name=".remind.AddReminderActivity"></activity>
+            android:taskAffinity="" />
+        <activity android:name=".remind.AddReminderActivity" />
+        <activity
+            android:name=".course.ClassesActivity"
+            android:label="@string/title_activity_classes"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

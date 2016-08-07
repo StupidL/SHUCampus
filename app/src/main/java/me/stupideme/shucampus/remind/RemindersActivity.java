@@ -26,18 +26,19 @@ public class RemindersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RemindersActivity.this.finish();
-            }
-        });
 
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setShowHideAnimationEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RemindersActivity.this.finish();
+            }
+        });
 
 
         manager = DBManager.getInstance(RemindersActivity.this);

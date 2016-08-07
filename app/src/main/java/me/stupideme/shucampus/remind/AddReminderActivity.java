@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.DatePicker;
@@ -90,12 +91,12 @@ public class AddReminderActivity extends AppCompatActivity {
 
             case R.id.actions_alarm:
 
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                final int minute = calendar.get(Calendar.MINUTE);
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                final int hour = c.get(Calendar.HOUR_OF_DAY);
+                final int minute = c.get(Calendar.MINUTE);
 
 
                 new DatePickerDialog(AddReminderActivity.this, new DatePickerDialog.OnDateSetListener() {
@@ -122,11 +123,13 @@ public class AddReminderActivity extends AppCompatActivity {
                         }, hour, minute, true).show();
 
                         model.setId(calendar.getTimeInMillis());
+                        Log.i("======id====", String.valueOf(calendar.getTimeInMillis()));
                         alarmModel.setReminderId(calendar.getTimeInMillis());
 
 
                     }
                 }, year, month, day).show();
+                Log.i("====c====", String.valueOf(c.getTimeInMillis()));
 
                 break;
         }

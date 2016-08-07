@@ -64,7 +64,7 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,AddReminderActivity.class);
+                Intent intent = new Intent(context,ReminderDetailActivity.class);
                 intent.putExtra("title",model.getTitle());
                 intent.putExtra("id",model.getId());
                 intent.putExtra("content",model.getContent());

@@ -7,17 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import me.stupideme.shucampus.API.APIs;
 import me.stupideme.shucampus.R;
 
 /**
