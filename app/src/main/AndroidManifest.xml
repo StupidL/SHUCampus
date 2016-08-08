@@ -82,7 +82,8 @@
             android:name=".course.ClassesActivity"
             android:label="@string/title_activity_classes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".course.AddClassActivity"></activity>
+        <activity android:name=".course.AddClassActivity" />
+        <activity android:name=".activity.EditEventActivity"></activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp"
+    android:id="@+id/event_card"
     android:elevation="4dp">
 
     <RelativeLayout
@@ -70,7 +71,7 @@
             android:id="@+id/foot"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@+id/image"
+            android:layout_below="@+id/event_image"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -94,10 +95,11 @@
                 android:src="@drawable/ic_share_grey_700_24dp" />
 
             <ImageButton
+                android:id="@+id/foot_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
-                android:layout_toLeftOf="@+id/foot_share"
+                android:layout_toStartOf="@+id/foot_share"
                 android:background="@null"
                 android:contentDescription="Comment"
                 android:src="@drawable/ic_comment_grey_700_24dp" />

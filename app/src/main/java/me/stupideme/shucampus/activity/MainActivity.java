@@ -14,7 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.melnykov.fab.FloatingActionButton;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import me.stupideme.shucampus.API.APIs;
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         fab.attachToRecyclerView(recyclerView);
 
+        //add events fragment
+        EventsFragment fragment = new EventsFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
 
     }
 
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_feedback) {
 
-            startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
+            startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
 
         } else if (id == R.id.nav_info) {
 
