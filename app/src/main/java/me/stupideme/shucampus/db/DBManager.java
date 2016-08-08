@@ -24,13 +24,12 @@ public class DBManager {
     private static SQLiteDatabase db;
     private static final String TAG = DBManager.class.getSimpleName();
     private static DBManager INSTANCE;
-    private DBHelper dbHelper;
     public Context mContext;
 
 
     private DBManager(Context context) {
         mContext = context;
-        dbHelper = DBHelper.getInstance(context);
+        DBHelper dbHelper = DBHelper.getInstance(context);
         db = dbHelper.getReadableDatabase();
         Log.i(TAG, "DBManager constructed");
     }

@@ -1,25 +1,15 @@
 package me.stupideme.shucampus.model;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.print.PrintAttributes;
-import android.provider.ContactsContract;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobDate;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by 56211 on 2016/8/3.
  */
 
 public class Event extends BmobObject{
-
 
     //这些域对应着数据库中Event表的所有字段
     private MyUser author;          //发布动态的作者

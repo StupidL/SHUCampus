@@ -14,23 +14,23 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "alarm_clock.db";
 
-    public static final String ALARM_TABLE_NAME = "alarm";
-    public static final String ALARM_NAME = "name";
-    public static final String ALARM_REMINDER_ID = "reminderID";
-    public static final String ALARM_TIME_YEAR = "year";
-    public static final String ALARM_TIME_MONTH = "month";
-    public static final String ALARM_TIME_DAY = "day";
-    public static final String ALARM_TIME_HOUR = "hour";
-    public static final String ALARM_TIME_MINUTE = "minute";
-    public static final String ALARM_REPEAT_DAYS = "days";
-    public static final String ALARM_REPEAT_WEEKLY = "weekly";
-    public static final String ALARM_TONE = "tone";
-    public static final String ALARM_ENABLED = "enabled";
+    private static final String ALARM_TABLE_NAME = "alarm";
+    static final String ALARM_NAME = "name";
+    static final String ALARM_REMINDER_ID = "reminderID";
+    static final String ALARM_TIME_YEAR = "year";
+    static final String ALARM_TIME_MONTH = "month";
+    static final String ALARM_TIME_DAY = "day";
+    static final String ALARM_TIME_HOUR = "hour";
+    static final String ALARM_TIME_MINUTE = "minute";
+    static final String ALARM_REPEAT_DAYS = "days";
+    static final String ALARM_REPEAT_WEEKLY = "weekly";
+    static final String ALARM_TONE = "tone";
+    static final String ALARM_ENABLED = "enabled";
 
-    public static final String REMINDER_TABLE_NAME = "reminder";
-    public static final String REMINDER_ID = "id";
-    public static final String REMINDER_TITLE = "title";
-    public static final String REMINDER_CONTENT = "content";
+    private static final String REMINDER_TABLE_NAME = "reminder";
+    static final String REMINDER_ID = "id";
+    static final String REMINDER_TITLE = "title";
+    static final String REMINDER_CONTENT = "content";
 
     private static final String CLASS_TABLE_NAME = "class";
     private static final String CLASS_ID = "classId";
