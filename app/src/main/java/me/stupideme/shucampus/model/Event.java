@@ -6,14 +6,14 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 
 /**
- * Created by 56211 on 2016/8/3.
+ * Created by StupidL on 2016/8/3.
  */
 
 public class Event extends BmobObject{
 
     //这些域对应着数据库中Event表的所有字段
     private MyUser author;          //发布动态的作者
-    private BmobDate time;            //发布动态的时间
+    private BmobDate time;          //发布动态的时间
     private String content;         //动态的内容
     private BmobFile image;         //动态的配图
     private BmobRelation marks;     //多对多关系，用于存储所有标记该动态的用户

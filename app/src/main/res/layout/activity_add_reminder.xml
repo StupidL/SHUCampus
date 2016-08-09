@@ -5,40 +5,47 @@
     android:id="@+id/activity_add_reminder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_gravity="start|top"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
 
     </android.support.v7.widget.Toolbar>
 
     <EditText
-        android:layout_width="match_parent"
-        android:hint="标题"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:layout_height="wrap_content" />
+        android:hint="标题"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
     <android.support.v4.widget.Space
         android:id="@+id/reminder_spacer"
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="16dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_weight="1">
+
         <EditText
+            android:id="@+id/edit_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/edit_content"
-            android:gravity="start"
             android:background="@android:color/transparent"
-            android:hint="内容"/>
+            android:gravity="start"
+            android:hint="内容" />
     </ScrollView>
 
 

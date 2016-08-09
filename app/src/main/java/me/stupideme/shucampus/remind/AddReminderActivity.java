@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -29,6 +30,8 @@ public class AddReminderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         setContentView(R.layout.activity_add_reminder);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,6 +39,13 @@ public class AddReminderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("编辑提醒");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddReminderActivity.super.onBackPressed();
+            }
+        });
 
         title = (EditText) findViewById(R.id.edit_title);
         content = (EditText) findViewById(R.id.edit_content);
