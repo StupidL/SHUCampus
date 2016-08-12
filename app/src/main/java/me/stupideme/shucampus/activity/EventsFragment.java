@@ -19,7 +19,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.adapter.RecyclerViewAdapter;
+import me.stupideme.shucampus.adapter.EventsRecyclerViewAdapter;
 import me.stupideme.shucampus.model.Event;
 
 public class EventsFragment extends Fragment {
@@ -62,7 +62,7 @@ public class EventsFragment extends Fragment {
             @Override
             public void done(List<Event> list, BmobException e) {
                 if (e == null) {
-                    recyclerView.setAdapter(new RecyclerViewAdapter(list));
+                    recyclerView.setAdapter(new EventsRecyclerViewAdapter(list));
                 } else {
                     Snackbar.make(fab, "请求数据错误", Snackbar.LENGTH_LONG)
                             .setAction("OK", null).show();
