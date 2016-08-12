@@ -3,8 +3,6 @@ package me.stupideme.shucampus.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,35 +12,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.melnykov.fab.FloatingActionButton;
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobUser;
-import me.stupideme.shucampus.API.APIs;
+
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.course.ShowClassActivity;
-import me.stupideme.shucampus.remind.RemindersActivity;
+import me.stupideme.shucampus.course.ClassesFragment;
+import me.stupideme.shucampus.event.EventsFragment;
+import me.stupideme.shucampus.mark.MarkFragment;
+import me.stupideme.shucampus.remind.RemindersFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private EventsFragment eventsFragment;
+    private MarkFragment markFragment;
+    private ClassesFragment classesFragment;
+    private RemindersFragment remindersFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,11 +54,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        //add events fragment
+        eventsFragment = EventsFragment.newInstance(null, null);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, eventsFragment).commit();
+        markFragment = MarkFragment.newInstance(null, null);
+        classesFragment = ClassesFragment.newInstance(null, null);
+        remindersFragment = RemindersFragment.newInstance(null, null);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        fab.attachToRecyclerView(recyclerView);
+    }
 
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
     }
 
     @Override
@@ -89,12 +87,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -105,20 +99,23 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_hot) {
-            // Handle the camera action
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, eventsFragment).commit();
+
         } else if (id == R.id.nav_mark) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, markFragment).commit();
 
         } else if (id == R.id.nav_class) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, classesFragment).commit();
 
-            startActivity(new Intent(MainActivity.this, ShowClassActivity.class));
-
-        } else if (id == R.id.nav_schedule) {
-
-            startActivity(new Intent(MainActivity.this, RemindersActivity.class));
+        } else if (id == R.id.nav_reminder) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, remindersFragment).commit();
 
         } else if (id == R.id.nav_settings) {
 
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_feedback) {
 
-            startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
+            startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
 
         } else if (id == R.id.nav_info) {
 
@@ -138,10 +135,6 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("hasExit", true);
             editor.apply();
-
-//            BmobUser user = BmobUser.getCurrentUser();
-//            user.logOut();
-
             startActivity(new Intent(MainActivity.this, LoginActivityMaterial.class));
             MainActivity.this.finish();
         }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.stupideme.shucampus.course.ShowClassActivity">
+    tools:context="me.stupideme.shucampus.course.EditClassActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,15 +21,22 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_show_class" />
+    <!--<include layout="@layout/content_classes" />-->
+    <ListView
+        android:id="@+id/classes_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
     <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/show_class_fab"
+        android:id="@+id/classes_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_white_24dp"
+        android:backgroundTint="@color/colorAccent"
         app:fabSize="normal" />
 
 </android.support.design.widget.CoordinatorLayout>

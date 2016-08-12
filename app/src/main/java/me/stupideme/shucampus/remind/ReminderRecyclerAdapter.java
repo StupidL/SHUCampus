@@ -18,6 +18,8 @@ import me.stupideme.shucampus.db.DBManager;
 
 /**
  * Created by 56211 on 2016/8/6.
+ * This adapter is unused now because the ReminderListViewAdapter is in use.
+ * It will be used to replace ReminderListViewAdapter someday.
  */
 
 public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecyclerAdapter.ViewHolder> {
@@ -42,7 +44,6 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final int p = position;
         final ReminderModel model = dataSet.get(position);
         holder.title.setText(model.getTitle());
         holder.delete.setOnClickListener(new View.OnClickListener() {

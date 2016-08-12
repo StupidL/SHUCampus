@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/fragment_classes">
+    >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <!--<include layout="@layout/content_show_class" />-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -26,7 +26,7 @@
         </ScrollView>
 
 
-        <ScrollView
+        <com.melnykov.fab.ObservableScrollView
             android:id="@+id/show_class_scroll_col"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,8 +42,19 @@
 
                 <include layout="@layout/layout_weekly_columns" />
             </LinearLayout>
-        </ScrollView>
+        </com.melnykov.fab.ObservableScrollView>
 
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/show_class_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_edit_white_24dp"
+        app:fabSize="normal" />
+
+</android.support.design.widget.CoordinatorLayout>

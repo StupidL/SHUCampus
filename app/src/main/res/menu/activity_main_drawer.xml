@@ -15,7 +15,7 @@
             android:icon="@drawable/ic_event_orange_600_24dp"
             android:title="课表" />
         <item
-            android:id="@+id/nav_schedule"
+            android:id="@+id/nav_reminder"
             android:icon="@drawable/ic_schedule_purple_600_24dp"
             android:title="提醒" />
     </group>

@@ -19,6 +19,9 @@ import java.util.List;
 import me.stupideme.shucampus.CampusApp;
 import me.stupideme.shucampus.R;
 
+/**
+ *  This activity is replaced by ClassesFragment, it's now unused.
+ */
 public class ShowClassActivity extends AppCompatActivity {
 
     private boolean isFirst = true;
@@ -31,7 +34,7 @@ public class ShowClassActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_class);
+        setContentView(R.layout.fragment_classes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -88,7 +91,7 @@ public class ShowClassActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.show_class_edit) {
-            startActivity(new Intent(ShowClassActivity.this, ClassesActivity.class));
+            startActivity(new Intent(ShowClassActivity.this, EditClassActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -107,9 +110,7 @@ public class ShowClassActivity extends AppCompatActivity {
     private void createAllClass(List<ClassModel> list) {
         if (!list.isEmpty()) {
             for (ClassModel model : list) {
-
                 createClass(model);
-
             }
         }
     }

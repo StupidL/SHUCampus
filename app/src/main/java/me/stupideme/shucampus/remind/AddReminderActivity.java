@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import me.stupideme.shucampus.CampusApp;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.db.DBManager;
 
@@ -78,19 +79,18 @@ public class AddReminderActivity extends AppCompatActivity {
                 if (model.getId() != 0L) {
                     model.setTitle(title.getText().toString());
                     model.setContent(content.getText().toString());
-                    DBManager manager = DBManager.getInstance(AddReminderActivity.this);
-                    manager.insertReminder(model);
-                    manager.insertAlarm(alarmModel);
+                    CampusApp.manager.insertReminder(model);
+                    CampusApp.manager.insertAlarm(alarmModel);
                     if (tmpModel.getId() != 0L) {
-                        manager.deleteReminder(tmpModel.getId());
-                        manager.deleteAlarm(tmpModel.getId());
+                        CampusApp.manager.deleteReminder(tmpModel.getId());
+                        CampusApp.manager.deleteAlarm(tmpModel.getId());
                     }
                     //notify receiver
                     Intent intent = new Intent(AddReminderActivity.this, AlarmReceiver.class);
                     intent.setAction("me.stupidme.action.UPDATE_ALARM");
                     this.sendBroadcast(intent);
                     //notify data set
-                    setResult(0x102);
+                    setResult(0x402);
                     AddReminderActivity.this.finish();
 
                 } else {
