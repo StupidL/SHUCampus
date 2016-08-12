@@ -3,7 +3,6 @@ package me.stupideme.shucampus.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +17,7 @@ import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.course.ClassesFragment;
 import me.stupideme.shucampus.event.EventsFragment;
 import me.stupideme.shucampus.mark.MarkFragment;
+import me.stupideme.shucampus.notify.NotifyActivity;
 import me.stupideme.shucampus.remind.RemindersFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id==R.id.action_notification){
+            startActivity(new Intent(MainActivity.this,NotifyActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
