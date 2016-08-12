@@ -84,7 +84,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".course.AddClassActivity" />
         <activity android:name=".activity.EditEventActivity"></activity>
+<<<<<<< HEAD
         <activity android:name=".activity.FeedbackActivity"></activity>
+=======
+>>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
     </application>
 
 </manifest>

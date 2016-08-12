@@ -28,6 +28,25 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<<<<<<< HEAD
     </FrameLayout>
+=======
+
+    </FrameLayout>
+
+
+    <!--<ListView-->
+        <!--android:id="@+id/list_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:fastScrollEnabled="true"-->
+        <!--android:fadingEdge="none"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:layout_marginTop="?attr/actionBarSize"-->
+        <!--android:layout_height="match_parent">-->
+
+    <!--</ListView>-->
+
+
+>>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
 
 </android.support.design.widget.CoordinatorLayout>
