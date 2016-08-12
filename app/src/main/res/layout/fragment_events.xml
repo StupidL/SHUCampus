@@ -6,10 +6,6 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-=======
-    tools:context="me.stupideme.shucampus.activity.MainActivity"
->>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
     >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

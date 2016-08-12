@@ -3,6 +3,7 @@ package me.stupideme.shucampus.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,14 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-<<<<<<< HEAD
-=======
-import com.melnykov.fab.FloatingActionButton;
-
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobUser;
-import me.stupideme.shucampus.API.APIs;
->>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.course.ClassesFragment;
 import me.stupideme.shucampus.event.EventsFragment;
@@ -34,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private MarkFragment markFragment;
     private ClassesFragment classesFragment;
     private RemindersFragment remindersFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +63,7 @@ public class MainActivity extends AppCompatActivity
         classesFragment = ClassesFragment.newInstance(null, null);
         remindersFragment = RemindersFragment.newInstance(null, null);
 
-<<<<<<< HEAD
     }
-=======
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        fab.attachToRecyclerView(recyclerView);
-
-        //add events fragment
-        EventsFragment fragment = new EventsFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
->>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -113,7 +98,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
