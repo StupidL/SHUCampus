@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="settings"
+    android:title="settings">
+    <PreferenceCategory
+        android:key="normal_settings"
+        android:title="normal_settings">
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.stupideme.shucampus.activity.MainActivity">
+    tools:context="me.stupideme.shucampus.ui.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,26 +23,21 @@
 
     <!--<include layout="@layout/fragment_events" />-->
     <FrameLayout
-        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"></FrameLayout>
 
 
     <!--<ListView-->
-        <!--android:id="@+id/list_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:fastScrollEnabled="true"-->
-        <!--android:fadingEdge="none"-->
-        <!--android:overScrollMode="never"-->
-        <!--android:layout_marginTop="?attr/actionBarSize"-->
-        <!--android:layout_height="match_parent">-->
+    <!--android:id="@+id/list_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:fastScrollEnabled="true"-->
+    <!--android:fadingEdge="none"-->
+    <!--android:overScrollMode="never"-->
+    <!--android:layout_marginTop="?attr/actionBarSize"-->
+    <!--android:layout_height="match_parent">-->
 
     <!--</ListView>-->
-
-
->>>>>>> efcfc4fc99c5478f0b030c02d8ae03a15f5ad974
 
 </android.support.design.widget.CoordinatorLayout>

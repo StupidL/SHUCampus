@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="me.stupideme.shucampus.course.EditClassActivity"
-    tools:showIn="@layout/activity_edit_class">
+    tools:context="me.stupideme.shucampus.ui.CourseEditActivity"
+    tools:showIn="@layout/activity_edit_course">
     <ListView
         android:id="@+id/classes_list_view"
         android:layout_width="match_parent"

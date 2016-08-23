@@ -2,20 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.stupideme.shucampus">
 
-    <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 获取wifi网络状态的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -27,12 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.MainActivity"
             android:label=""
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.LoginActivityMaterial" />
+        <activity android:name=".ui.LoginActivityMaterial" />
+
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,51 +36,46 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.AboutActivity"
+            android:name=".ui.NavAboutActivity"
             android:label="关于"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ProfileActivity"
+            android:name=".ui.NavProfileActivity"
             android:label="个人资料"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".remind.NotificationService"
+            android:name=".ui.ReminderNotificationService"
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".remind.AlarmReceiver">
+        <receiver android:name=".ui.ReminderAlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name=".remind.RemindersActivity"
-            android:label="@string/title_activity_reminders"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".remind.ReminderDetailActivity"
+            android:name=".ui.ReminderDetailActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar"
             android:taskAffinity="" />
-        <activity android:name=".remind.AddReminderActivity" />
+        <activity android:name=".ui.ReminderAddActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".course.ShowClassActivity"
+            android:name=".ui.CourseEditActivity"
             android:label="@string/title_activity_classes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".course.EditClassActivity"
-            android:label="@string/title_activity_classes"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".course.AddClassActivity" />
-        <activity android:name=".activity.EditEventActivity" />
-        <activity android:name=".activity.FeedbackActivity" />
-        <activity android:name=".notify.NotifyActivity"></activity>
+        <activity android:name=".ui.CourseAddActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EventEditActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.NavFeedbackActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.NotifyActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.EventDetailActivity" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

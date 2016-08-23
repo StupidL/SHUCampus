@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="colorPrimary2">#009688</color>
+    <color name="colorPrimaryDark2">#00796B</color>
+
     <!--<color name="bright_pink">#FF007F</color>-->
     <!--<color name="red">#FF0000</color>-->
     <!--<color name="orange">#FF7F00</color>-->
@@ -29,4 +32,7 @@
         <item>@color/magenta</item>
     </array>
 
+    <color name="Orange600">#F4511E</color>
+    <color name="Orange700">#E64A19</color>
+    <color name="Gray600">#757575</color>
 </resources>

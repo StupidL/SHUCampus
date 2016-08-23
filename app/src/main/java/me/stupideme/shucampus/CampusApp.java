@@ -1,11 +1,11 @@
 package me.stupideme.shucampus;
 
 import android.app.Application;
-import android.util.Log;
-
+import java.util.ArrayList;
+import java.util.List;
 import cn.bmob.v3.Bmob;
-import me.stupideme.shucampus.API.APIs;
-import me.stupideme.shucampus.db.DBManager;
+import me.stupideme.shucampus.model.Comment;
+import me.stupideme.shucampus.model.Event;
 
 /**
  * Created by StupidL on 2016/8/3.
@@ -13,14 +13,14 @@ import me.stupideme.shucampus.db.DBManager;
 
 public class CampusApp extends Application {
 
-    public static DBManager manager;
+    public volatile static List<Event> eventList = new ArrayList<>();
+    public volatile static List<Comment> commentList = new ArrayList<>();
+    public volatile static List<Event> markedEventList = new ArrayList<>();
+    public volatile static boolean hasMaarkedEventsCHanded = false;
 
     @Override
     public void onCreate(){
 
         Bmob.initialize(getApplicationContext(), APIs.APPLICATION_ID);      //init bmob sdk
-        Log.i("=====Bmob init=====","success");
-        manager = DBManager.getInstance(getApplicationContext());
-
     }
 }
