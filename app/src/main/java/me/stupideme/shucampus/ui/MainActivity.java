@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity
         CampusApp.markedEventList.clear();
     }
 
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_class) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, coursesFragment).commit();
+                    .replace(R.id.fragment_container, new CoursesFragment()).commit();
 
         } else if (id == R.id.nav_reminder) {
             getSupportFragmentManager().beginTransaction()

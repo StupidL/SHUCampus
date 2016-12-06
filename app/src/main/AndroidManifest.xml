@@ -20,12 +20,11 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".ui.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label=""
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.LoginActivityMaterial" />
-
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,8 +36,7 @@
         </activity>
         <activity
             android:name=".ui.NavAboutActivity"
-            android:label="关于"
-            />
+            android:label="关于" />
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -63,19 +61,45 @@
             android:name=".ui.ReminderDetailActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:taskAffinity="" />
-        <activity android:name=".ui.ReminderAddActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:taskAffinity=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ReminderAddActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.CourseEditActivity"
             android:label="@string/title_activity_classes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.CourseAddActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.EventEditActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.NavFeedbackActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.NotifyActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.EventDetailActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.CourseAddActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.EventEditActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.NavFeedbackActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.NotifyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.EventDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.CourseActivity"
+            android:label="@string/title_activity_course"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

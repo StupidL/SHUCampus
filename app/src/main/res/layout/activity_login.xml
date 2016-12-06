@@ -1,0 +1,33 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="me.stupideme.shucampus.view.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_bg" />
+
+    <shem.com.materiallogin.MaterialLoginView
+        android:id="@+id/material_log_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d1d3d6"
+        app:loginActionText="SIGN IN"
+        app:loginHint="用户名"
+        app:loginPasswordHint="密码"
+        app:loginTextColor="@color/material_login_login_text_color"
+        app:loginTitle="登录"
+        app:registerActionText="完成"
+        app:registerHint="用户名"
+        app:registerPasswordHint="密码"
+        app:registerRepeatPasswordHint="重复密码"
+        app:registerTitle="注册">
+
+    </shem.com.materiallogin.MaterialLoginView>
+
+</FrameLayout>

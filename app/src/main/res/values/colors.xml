@@ -35,4 +35,6 @@
     <color name="Orange600">#F4511E</color>
     <color name="Orange700">#E64A19</color>
     <color name="Gray600">#757575</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

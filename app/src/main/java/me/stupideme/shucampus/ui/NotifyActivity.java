@@ -13,7 +13,7 @@ import java.util.List;
 
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.ViewPagerAdapter;
-import me.stupideme.shucampus.view.SlidingTabLayout;
+import me.stupideme.shucampus.view.custom.SlidingTabLayout;
 
 public class NotifyActivity extends AppCompatActivity {
 

@@ -23,6 +23,7 @@
 
     <!--<include layout="@layout/content_classes" />-->
     <ListView
+        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/classes_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

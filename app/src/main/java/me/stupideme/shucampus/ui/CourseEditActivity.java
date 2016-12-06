@@ -14,11 +14,11 @@ import java.util.List;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.ClassListViewAdapter;
 import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.model.CourseModel;
 
 public class CourseEditActivity extends AppCompatActivity {
 
-    private List<ClassModel> list;
+    private List<CourseModel> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class CourseEditActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CourseEditActivity.this.finish();
+                CourseEditActivity.super.onBackPressed();
             }
         });
 

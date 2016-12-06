@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import me.stupideme.shucampus.R;
-
 public class SettingsFragment extends PreferenceFragment {
 
     private OnFragmentInteractionListener mListener;
@@ -18,19 +16,15 @@ public class SettingsFragment extends PreferenceFragment {
         // Required empty public constructor
     }
 
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-        addPreferencesFromResource(R.xml.preferences);
+
+        //addPreferencesFromResource(R.xml.preferences);
     }
 
     @Override

@@ -43,6 +43,10 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CLASS_MOD = "mod";
     private static final String CLASS_COLOR = "color";
 
+    private static final String USER_INFO_TABLE_NAME = "user";
+    private static final String USER_NAME = "name";
+    private static final String USER_PWD = "password";
+
     private static final String SQL_CREATE_ALARM = "CREATE TABLE " + ALARM_TABLE_NAME + "("
             + "_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ALARM_NAME + ", " + ALARM_REMINDER_ID + ", " + ALARM_TIME_YEAR + ", " + ALARM_TIME_MONTH + ", "
@@ -62,6 +66,10 @@ public class DBHelper extends SQLiteOpenHelper {
             + CLASS_MOD + ", " + CLASS_COLOR
             + ")";
 
+    private static final String SQL_CREATE_USER_INFO = "CREATE TABLE " + USER_INFO_TABLE_NAME + "("
+            + " _ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + USER_NAME + ", " + USER_PWD + ")";
+
     private DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -78,6 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ALARM);
         db.execSQL(SQL_CREATE_REMINDER);
         db.execSQL(SQL_CREATE_CLASS);
+        db.execSQL(SQL_CREATE_USER_INFO);
     }
 
     @Override

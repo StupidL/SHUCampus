@@ -1,15 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
-    //useLibrary 'org.apache.http.legacy'
+    useLibrary 'org.apache.http.legacy'
+
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
 
     defaultConfig {
         applicationId "me.stupideme.shucampus"
-        minSdkVersion 23
-        targetSdkVersion 23
+        minSdkVersion 21
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,10 +35,9 @@ dependencies {
 
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
 
-
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:support-v4:25.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
     compile 'com.github.shem8:material-login:1.4.0'
     compile 'cn.bmob.android:bmob-sdk:3.5.0'

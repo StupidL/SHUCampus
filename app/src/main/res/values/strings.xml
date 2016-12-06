@@ -33,4 +33,7 @@
     <string name="title_activity_classes">ClassesActivity</string>
 
     <string name="color_picker_dialog">选择颜色</string>
+    <string name="title_activity_course">CourseActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

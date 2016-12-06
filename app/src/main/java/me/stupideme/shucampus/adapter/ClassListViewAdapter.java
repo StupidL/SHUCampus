@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.model.CourseModel;
 import me.stupideme.shucampus.db.DBManager;
 
 /**
@@ -21,10 +21,10 @@ import me.stupideme.shucampus.db.DBManager;
 
 public class ClassListViewAdapter extends BaseAdapter {
 
-    private List<ClassModel> list;
+    private List<CourseModel> list;
     private Context mContext;
 
-    public ClassListViewAdapter(Context context, List<ClassModel> list) {
+    public ClassListViewAdapter(Context context, List<CourseModel> list) {
         mContext = context;
         this.list = list;
     }
@@ -64,13 +64,37 @@ public class ClassListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.weekdayTextView.setText(list.get(i).getWeekday());
-        viewHolder.beginTextView.setText(list.get(i).getBegin());
-        viewHolder.endTextView.setText(list.get(i).getEnd());
-        viewHolder.nameTextView.setText(list.get(i).getName());
-        viewHolder.locationTextView.setText(list.get(i).getLocation());
-        viewHolder.teacherTextView.setText(list.get(i).getTeacher());
-        viewHolder.modTextView.setText(list.get(i).getMod());
+        switch (list.get(i).getWeekday()){
+            case 0:
+                viewHolder.weekdayTextView.setText("周一");
+                break;
+            case 1:
+                viewHolder.weekdayTextView.setText("周二");
+                break;
+            case 2:
+                viewHolder.weekdayTextView.setText("周三");
+                break;
+            case 3:
+                viewHolder.weekdayTextView.setText("周四");
+                break;
+            case 4:
+                viewHolder.weekdayTextView.setText("周五");
+                break;
+            case 5:
+                viewHolder.weekdayTextView.setText("周六");
+                break;
+            case 6:
+                viewHolder.weekdayTextView.setText("周日");
+                break;
+        }
+
+        viewHolder.weekdayTextView.setText(String.valueOf(list.get(i).getWeekday()));
+        viewHolder.beginTextView.setText(String.valueOf(list.get(i).getBegin()));
+        viewHolder.endTextView.setText(String.valueOf(list.get(i).getEnd()));
+        viewHolder.nameTextView.setText(String.valueOf(list.get(i).getName()));
+        viewHolder.locationTextView.setText(String.valueOf(list.get(i).getLocation()));
+        viewHolder.teacherTextView.setText(String.valueOf(list.get(i).getTeacher()));
+        viewHolder.modTextView.setText(String.valueOf(list.get(i).getMod()));
 
         viewHolder.cardView.setCardBackgroundColor(list.get(i).getColor());
         viewHolder.cardView.setRadius(4);

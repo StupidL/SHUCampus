@@ -16,11 +16,11 @@ import org.xdty.preference.colorpicker.ColorPickerDialog;
 import org.xdty.preference.colorpicker.ColorPickerSwatch;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.model.CourseModel;
 import me.stupideme.shucampus.db.DBManager;
 
 public class CourseAddActivity extends AppCompatActivity {
-    private ClassModel model;
+    private CourseModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,12 @@ public class CourseAddActivity extends AppCompatActivity {
             }
         });
 
-        model = new ClassModel();
+        model = new CourseModel();
 
         final Spinner weekday = (Spinner) findViewById(R.id.spinner_weekday);
         final AppCompatEditText begin = (AppCompatEditText) findViewById(R.id.edit_begin);
         final AppCompatEditText end = (AppCompatEditText) findViewById(R.id.edit_end);
-        final AppCompatEditText name = (AppCompatEditText)findViewById(R.id.edit_name);
+        final AppCompatEditText name = (AppCompatEditText) findViewById(R.id.edit_name);
         final AppCompatEditText location = (AppCompatEditText) findViewById(R.id.edit_location);
         final AppCompatEditText teacher = (AppCompatEditText) findViewById(R.id.edit_teacher);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner_mod);
@@ -54,13 +54,14 @@ public class CourseAddActivity extends AppCompatActivity {
         final Button save = (Button) findViewById(R.id.button_save);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CourseAddActivity.this,
-                R.array.class_weekdays,R.layout.support_simple_spinner_dropdown_item);
+                R.array.class_weekdays, R.layout.support_simple_spinner_dropdown_item);
         weekday.setAdapter(adapter);
 
         weekday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 model.setWeekday(i);
+                System.out.println("model weekday" + model.getWeekday());
                 adapterView.setSelection(i);
             }
 
@@ -71,7 +72,7 @@ public class CourseAddActivity extends AppCompatActivity {
         });
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(CourseAddActivity.this,
-                R.array.class_mod,R.layout.support_simple_spinner_dropdown_item);
+                R.array.class_mod, R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter1);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,7 +89,7 @@ public class CourseAddActivity extends AppCompatActivity {
         });
 
         int[] colors = getResources().getIntArray(R.array.default_rainbow);
-        int selectedColor = ContextCompat.getColor(this,R.color.azure);
+        int selectedColor = ContextCompat.getColor(this, R.color.azure);
         final ColorPickerDialog dialog = ColorPickerDialog.newInstance(R.string.color_picker_dialog,
                 colors,
                 selectedColor,
@@ -106,7 +107,7 @@ public class CourseAddActivity extends AppCompatActivity {
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show(getFragmentManager(),"color_dialog");
+                dialog.show(getFragmentManager(), "color_dialog");
             }
         });
 
@@ -131,17 +132,19 @@ public class CourseAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Integer.parseInt(begin.getText().toString())>13||Integer.parseInt(end.getText().toString())>13){
-                    Snackbar.make(save,"课程不能大于13",Snackbar.LENGTH_SHORT).show();
-                }else {
+                if (Integer.parseInt(begin.getText().toString()) > 13 || Integer.parseInt(end.getText().toString()) > 13) {
+                    Snackbar.make(save, "课程不能大于13", Snackbar.LENGTH_SHORT).show();
+                } else {
+
                     model.setBegin(Integer.parseInt(begin.getText().toString()));
                     model.setEnd(Integer.parseInt(end.getText().toString()));
-                    model.setName("@"+name.getText().toString()+"\n");
-                    model.setLocation("@"+location.getText().toString()+"\n");
-                    model.setTeacher("@"+teacher.getText().toString()+"\n");
+                    model.setName("@" + name.getText().toString() + "\n");
+                    model.setLocation("@" + location.getText().toString() + "\n");
+                    model.setTeacher("@" + teacher.getText().toString() + "\n");
 
                     DBManager.getInstance(CourseAddActivity.this).insertClass(model);
                 }
+                CourseAddActivity.this.finish();
             }
         });
 

@@ -1,9 +1,9 @@
 package me.stupideme.shucampus.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,7 @@ import com.melnykov.fab.ObservableScrollView;
 import java.util.List;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.model.CourseModel;
 import me.stupideme.shucampus.db.DBManager;
 
 public class CoursesFragment extends Fragment {
@@ -27,7 +27,7 @@ public class CoursesFragment extends Fragment {
     // private OnFragmentInteractionListener mListener;
     private RelativeLayout[] layouts;
     private int width, height;
-    private List<ClassModel> list;
+    private List<CourseModel> list;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -65,63 +65,71 @@ public class CoursesFragment extends Fragment {
         layouts[4] = (RelativeLayout) view.findViewById(R.id.Friday);
         layouts[5] = (RelativeLayout) view.findViewById(R.id.Saturday);
         layouts[6] = (RelativeLayout) view.findViewById(R.id.Sunday);
-
+        System.out.println(layouts[6].toString());
         width = layouts[0].getWidth();
         height = layouts[0].getHeight() / 13;
+
+        Log.i("width", width + " " + layouts[0].getWidth());
+        Log.i("height", height + " " + layouts[0].getHeight());
+
+        width = 50;
+        height = 80;
 
         //list = CampusApp.app.manager.getAllClass();
         DBManager manager = DBManager.getInstance(getActivity());
         list = manager.getAllClass();
-            createAllClass(list);
-
+        System.out.println("list size" + list.size());
+        createAllClass(list);
         return view;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        //mListener = null;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0x201) {
-            freshClasses();
-        }
-    }
-
-    private void freshClasses() {
+    public void onPause() {
+        super.onPause();
         for (RelativeLayout layout : layouts) {
             layout.removeAllViews();
         }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         createAllClass(DBManager.getInstance(getActivity()).getAllClass());
     }
 
-    private void createAllClass(List<ClassModel> list) {
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//        if (requestCode == 0x201) {
+//            freshClasses();
+//        }
+//    }
+//
+//    private void freshClasses() {
+//        for (RelativeLayout layout : layouts) {
+//            layout.removeAllViews();
+//        }
+//
+//        createAllClass(DBManager.getInstance(getActivity()).getAllClass());
+//    }
+
+    private void createAllClass(List<CourseModel> list) {
         if (!list.isEmpty()) {
-            for (ClassModel model : list) {
-
+            for (CourseModel model : list) {
                 createClass(model);
-
             }
         }
     }
 
-    private void createClass(ClassModel model) {
+    private void createClass(CourseModel model) {
 
         TextView tv = new TextView(getActivity().getBaseContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height * (model.getEnd() - model.getBegin() + 1));
         tv.setY(height * (model.getBegin() - 1));
         tv.setLayoutParams(params);
         tv.setGravity(Gravity.NO_GRAVITY);
-        layouts[model.getWeekday() - 1].addView(tv);
-
+        System.out.println(model.getWeekday());
+        layouts[model.getWeekday()].addView(tv);
     }
 
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.stupideme.shucampus.model.AlarmModel;
-import me.stupideme.shucampus.model.ClassModel;
+import me.stupideme.shucampus.model.CourseModel;
 import me.stupideme.shucampus.model.ReminderModel;
 
 
@@ -24,21 +24,32 @@ public class DBManager {
     private static SQLiteDatabase db;
     private static final String TAG = DBManager.class.getSimpleName();
     private static DBManager INSTANCE;
-    public Context mContext;
+    public static Context mContext;
 
 
-    private DBManager(Context context) {
-        mContext = context;
-        DBHelper dbHelper = DBHelper.getInstance(context);
+    private DBManager() {
+        DBHelper dbHelper = DBHelper.getInstance(mContext);
         db = dbHelper.getReadableDatabase();
         Log.i(TAG, "DBManager constructed");
     }
 
     public static DBManager getInstance(Context context) {
+
         if (null == INSTANCE) {
-            INSTANCE = new DBManager(context);
+            INSTANCE = new DBManager();
         }
         return INSTANCE;
+    }
+
+    public static DBManager getInstance() {
+        if (null == INSTANCE) {
+            INSTANCE = new DBManager();
+        }
+        return INSTANCE;
+    }
+
+    public static void init(Context context) {
+        mContext = context;
     }
 
     /**
@@ -228,7 +239,7 @@ public class DBManager {
         db.insert("class", null, values);
     }
 
-    public void insertClass(ClassModel model) {
+    public void insertClass(CourseModel model) {
         ContentValues values = classToContentValues(model);
         db.insert("class", null, values);
     }
@@ -254,54 +265,54 @@ public class DBManager {
         return db.rawQuery("SELECT * FROM class", null);
     }
 
-    public ContentValues classToContentValues(ClassModel classModel) {
+    public ContentValues classToContentValues(CourseModel courseModel) {
         ContentValues values = new ContentValues();
-        values.put("classId", classModel.getClassId());
-        values.put("weekday", classModel.getWeekday());
-        values.put("begin", classModel.getBegin());
-        values.put("end", classModel.getEnd());
-        values.put("name", classModel.getName());
-        values.put("location", classModel.getLocation());
-        values.put("teacher", classModel.getTeacher());
-        values.put("mod", classModel.getMod());
-        values.put("color", classModel.getColor());
+        values.put("classId", courseModel.getClassId());
+        values.put("weekday", courseModel.getWeekday());
+        values.put("begin", courseModel.getBegin());
+        values.put("end", courseModel.getEnd());
+        values.put("name", courseModel.getName());
+        values.put("location", courseModel.getLocation());
+        values.put("teacher", courseModel.getTeacher());
+        values.put("mod", courseModel.getMod());
+        values.put("color", courseModel.getColor());
         return values;
     }
 
-    public ClassModel contentValuesToClass(ContentValues values) {
-        ClassModel classModel = new ClassModel();
-        classModel.setClassId(values.getAsLong("classId"));
-        classModel.setWeekday(values.getAsInteger("weekday"));
-        classModel.setBegin(values.getAsInteger("begin"));
-        classModel.setEnd(values.getAsInteger("end"));
-        classModel.setName(values.getAsString("name"));
-        classModel.setLocation(values.getAsString("location"));
-        classModel.setTeacher(values.getAsString("teacher"));
-        classModel.setMod(values.getAsInteger("mod"));
-        classModel.setColor(values.getAsInteger("color"));
-        return classModel;
+    public CourseModel contentValuesToClass(ContentValues values) {
+        CourseModel courseModel = new CourseModel();
+        courseModel.setClassId(values.getAsLong("classId"));
+        courseModel.setWeekday(values.getAsInteger("weekday"));
+        courseModel.setBegin(values.getAsInteger("begin"));
+        courseModel.setEnd(values.getAsInteger("end"));
+        courseModel.setName(values.getAsString("name"));
+        courseModel.setLocation(values.getAsString("location"));
+        courseModel.setTeacher(values.getAsString("teacher"));
+        courseModel.setMod(values.getAsInteger("mod"));
+        courseModel.setColor(values.getAsInteger("color"));
+        return courseModel;
     }
 
-    public ClassModel cursorToClass(Cursor cursor) {
-        ClassModel classModel = new ClassModel();
-        classModel.setClassId(cursor.getLong(cursor.getColumnIndex("classId")));
-        classModel.setWeekday(cursor.getInt(cursor.getColumnIndex("weekday")));
-        classModel.setBegin(cursor.getInt(cursor.getColumnIndex("begin")));
-        classModel.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
-        classModel.setName(cursor.getString(cursor.getColumnIndex("name")));
-        classModel.setLocation(cursor.getString(cursor.getColumnIndex("location")));
-        classModel.setTeacher(cursor.getString(cursor.getColumnIndex("teacher")));
-        classModel.setMod(cursor.getInt(cursor.getColumnIndex("mod")));
-        classModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
-        return classModel;
+    public CourseModel cursorToClass(Cursor cursor) {
+        CourseModel courseModel = new CourseModel();
+        courseModel.setClassId(cursor.getLong(cursor.getColumnIndex("classId")));
+        courseModel.setWeekday(cursor.getInt(cursor.getColumnIndex("weekday")));
+        courseModel.setBegin(cursor.getInt(cursor.getColumnIndex("begin")));
+        courseModel.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
+        courseModel.setName(cursor.getString(cursor.getColumnIndex("name")));
+        courseModel.setLocation(cursor.getString(cursor.getColumnIndex("location")));
+        courseModel.setTeacher(cursor.getString(cursor.getColumnIndex("teacher")));
+        courseModel.setMod(cursor.getInt(cursor.getColumnIndex("mod")));
+        courseModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
+        return courseModel;
     }
 
-    public ClassModel getClassModel(long classId) {
+    public CourseModel getClassModel(long classId) {
         return cursorToClass(queryClass(classId));
     }
 
-    public List<ClassModel> getAllClass() {
-        List<ClassModel> list = new ArrayList<>();
+    public List<CourseModel> getAllClass() {
+        List<CourseModel> list = new ArrayList<>();
         Cursor cursor = queryAllClass();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -309,5 +320,21 @@ public class DBManager {
             cursor.moveToNext();
         }
         return list;
+    }
+
+    public String queryUserInfo() {
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE _id >= ?", new String[]{"0"});
+        cursor.moveToLast();
+        StringBuilder builder = new StringBuilder();
+        builder.append(cursor.getString(cursor.getColumnIndex("name"))).append(",").append(cursor.getString(cursor.getColumnIndex("password")));
+        cursor.close();
+        return builder.toString();
+    }
+
+    public void insertUserInfo(String name, String pwd) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("password", pwd);
+        db.insert("user", null, values);
     }
 }

@@ -16,13 +16,13 @@
         android:popupTheme="@style/AppTheme.AppBarOverlay" />
 
 
-    <me.stupideme.shucampus.view.SlidingTabLayout
+    <me.stupideme.shucampus.view.custom.SlidingTabLayout
         android:id="@+id/sliding_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp">
 
-    </me.stupideme.shucampus.view.SlidingTabLayout>
+    </me.stupideme.shucampus.view.custom.SlidingTabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
