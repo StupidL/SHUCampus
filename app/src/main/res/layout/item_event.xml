@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/event_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp"
-    android:id="@+id/event_card"
     android:elevation="4dp">
 
     <RelativeLayout
@@ -20,7 +20,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <android.support.v4.widget.CircleImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/head_image"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
@@ -56,22 +56,22 @@
             android:paddingRight="16dp"
             android:text="Hello World!" />
 
-        <ImageView
-            android:id="@+id/event_image"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_below="@+id/content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:contentDescription="Image"
-            android:scaleType="fitXY"
-            android:src="@drawable/nav_header" />
+        <!--<ImageView-->
+            <!--android:id="@+id/event_image"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="250dp"-->
+            <!--android:layout_below="@+id/content"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:contentDescription="Image"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@drawable/nav_header" />-->
 
         <RelativeLayout
             android:id="@+id/foot"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@+id/event_image"
+            android:layout_below="@+id/content"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -84,6 +84,16 @@
                 android:background="@null"
                 android:contentDescription="Mark"
                 android:src="@drawable/ic_star_border_grey_700_24dp" />
+
+            <TextView
+                android:id="@+id/foot_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_toEndOf="@id/foot_mark"
+                android:gravity="center"
+                android:text="13381536323"
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/foot_share"

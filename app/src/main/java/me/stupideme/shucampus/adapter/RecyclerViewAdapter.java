@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(event.getAuthor().getUsername());
         holder.time.setText(event.getCreatedAt());
         holder.content.setText(event.getContent());
-        holder.image.setImageResource(R.drawable.nav_header);
+       // holder.image.setImageResource(R.drawable.nav_header);
         holder.mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             name = (TextView) itemView.findViewById(R.id.head_name);
             time = (TextView) itemView.findViewById(R.id.head_time);
             content = (TextView) itemView.findViewById(R.id.content);
-            image = (ImageView) itemView.findViewById(R.id.event_image);
+          //  image = (ImageView) itemView.findViewById(R.id.event_image);
             mark = (ImageButton) itemView.findViewById(R.id.foot_mark);
             comments = (ImageButton) itemView.findViewById(R.id.foot_comment);
             share = (ImageButton) itemView.findViewById(R.id.foot_share);

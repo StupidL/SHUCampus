@@ -8,6 +8,7 @@ import cn.bmob.v3.datatype.BmobFile;
  */
 
 public class MyUser extends BmobUser {
+
     private BmobFile head;      //用户头像
 
     public BmobFile getHead() {

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.CourseModel;
+import me.stupideme.shucampus.model.CourseBean;
 import me.stupideme.shucampus.db.DBManager;
 
 /**
@@ -21,10 +21,10 @@ import me.stupideme.shucampus.db.DBManager;
 
 public class ClassListViewAdapter extends BaseAdapter {
 
-    private List<CourseModel> list;
+    private List<CourseBean> list;
     private Context mContext;
 
-    public ClassListViewAdapter(Context context, List<CourseModel> list) {
+    public ClassListViewAdapter(Context context, List<CourseBean> list) {
         mContext = context;
         this.list = list;
     }

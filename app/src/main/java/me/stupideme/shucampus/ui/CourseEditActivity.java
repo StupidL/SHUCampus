@@ -14,11 +14,11 @@ import java.util.List;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.ClassListViewAdapter;
 import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.CourseModel;
+import me.stupideme.shucampus.model.CourseBean;
 
 public class CourseEditActivity extends AppCompatActivity {
 
-    private List<CourseModel> list;
+    private List<CourseBean> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

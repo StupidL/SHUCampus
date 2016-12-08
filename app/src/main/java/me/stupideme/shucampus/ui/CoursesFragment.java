@@ -18,7 +18,7 @@ import com.melnykov.fab.ObservableScrollView;
 import java.util.List;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.CourseModel;
+import me.stupideme.shucampus.model.CourseBean;
 import me.stupideme.shucampus.db.DBManager;
 
 public class CoursesFragment extends Fragment {
@@ -27,7 +27,7 @@ public class CoursesFragment extends Fragment {
     // private OnFragmentInteractionListener mListener;
     private RelativeLayout[] layouts;
     private int width, height;
-    private List<CourseModel> list;
+    private List<CourseBean> list;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -113,15 +113,15 @@ public class CoursesFragment extends Fragment {
 //        createAllClass(DBManager.getInstance(getActivity()).getAllClass());
 //    }
 
-    private void createAllClass(List<CourseModel> list) {
+    private void createAllClass(List<CourseBean> list) {
         if (!list.isEmpty()) {
-            for (CourseModel model : list) {
+            for (CourseBean model : list) {
                 createClass(model);
             }
         }
     }
 
-    private void createClass(CourseModel model) {
+    private void createClass(CourseBean model) {
 
         TextView tv = new TextView(getActivity().getBaseContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height * (model.getEnd() - model.getBegin() + 1));

@@ -1,89 +1,38 @@
 package me.stupideme.shucampus.model;
 
+import java.util.List;
+
+import me.stupideme.shucampus.db.DBManager;
+
 /**
- * Created by StupidL on 2016/8/3.
+ * Created by StupidL on 2016/12/7.
  */
 
 public class CourseModel {
-    private long classId;
-    private int weekday;
-    private int begin;
-    private int end;
-    private String name;
-    private String location;
-    private String teacher;
-    private int mod;
-    private int color;
+    private static CourseModel INSTANCE;
+    private DBManager manager;
 
-    public long getClassId() {
-        return classId;
+    private CourseModel() {
+        manager = DBManager.getInstance();
     }
 
-    public void setClassId(long classId) {
-        this.classId = classId;
+    public static CourseModel getInstance() {
+        if (INSTANCE == null)
+            INSTANCE = new CourseModel();
+
+        return INSTANCE;
     }
 
-    public int getWeekday() {
-        return weekday;
+    public void addCourse(CourseBean bean) {
+        manager.insertClass(bean);
     }
 
-    public void setWeekday(int weekday) {
-        this.weekday = weekday;
+    public void removeCourse(CourseBean bean) {
+        long id = bean.getWeekday() << 6 + bean.getBegin() << 4 + bean.getEnd() << 2;
+        manager.deleteClass(id);
     }
 
-    public int getBegin() {
-        return begin;
-    }
-
-    public void setBegin(int begin) {
-        this.begin = begin;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public void setEnd(int end) {
-        this.end = end;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
-    }
-
-    public int getMod() {
-        return mod;
-    }
-
-    public void setMod(int mod) {
-        this.mod = mod;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+    public List<CourseBean> autoLoadCourses(){
+        return manager.getAllClass();
     }
 }

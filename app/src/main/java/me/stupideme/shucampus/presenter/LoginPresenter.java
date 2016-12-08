@@ -74,9 +74,11 @@ public class LoginPresenter {
 
     public void autoSignIn() {
         String[] info = mModel.getUserInfo().split(",");
-        String name = info[0];
-        String pwd = info[1];
-        signIn(name, pwd);
+        if (info.length == 2) {
+            String name = info[0];
+            String pwd = info[1];
+            signIn(name, pwd);
+        }
     }
 
 }

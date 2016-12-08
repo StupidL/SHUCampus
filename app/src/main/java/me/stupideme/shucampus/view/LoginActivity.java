@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.presenter.LoginPresenter;
-import me.stupideme.shucampus.ui.MainActivity;
 import shem.com.materiallogin.MaterialLoginView;
 import shem.com.materiallogin.MaterialLoginViewListener;
 
@@ -25,7 +24,15 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
         mPresenter = LoginPresenter.getInstance(this);
 
-        mPresenter.autoSignIn();
+        Intent intent = getIntent();
+        boolean auto = false;
+        if (intent != null) {
+            String where = intent.getStringExtra("WhereFrom");
+            if (where.equals("MainActivity"))
+                auto = true;
+        }
+        if (!auto)
+            mPresenter.autoSignIn();
 
         MaterialLoginView view = (MaterialLoginView) findViewById(R.id.material_log_in);
         view.setListener(new MaterialLoginViewListener() {

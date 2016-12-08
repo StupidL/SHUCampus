@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.stupideme.shucampus.model.AlarmModel;
-import me.stupideme.shucampus.model.CourseModel;
+import me.stupideme.shucampus.model.CourseBean;
 import me.stupideme.shucampus.model.ReminderModel;
 
 
@@ -239,7 +239,7 @@ public class DBManager {
         db.insert("class", null, values);
     }
 
-    public void insertClass(CourseModel model) {
+    public void insertClass(CourseBean model) {
         ContentValues values = classToContentValues(model);
         db.insert("class", null, values);
     }
@@ -265,54 +265,54 @@ public class DBManager {
         return db.rawQuery("SELECT * FROM class", null);
     }
 
-    public ContentValues classToContentValues(CourseModel courseModel) {
+    public ContentValues classToContentValues(CourseBean courseBean) {
         ContentValues values = new ContentValues();
-        values.put("classId", courseModel.getClassId());
-        values.put("weekday", courseModel.getWeekday());
-        values.put("begin", courseModel.getBegin());
-        values.put("end", courseModel.getEnd());
-        values.put("name", courseModel.getName());
-        values.put("location", courseModel.getLocation());
-        values.put("teacher", courseModel.getTeacher());
-        values.put("mod", courseModel.getMod());
-        values.put("color", courseModel.getColor());
+        values.put("classId", courseBean.getClassId());
+        values.put("weekday", courseBean.getWeekday());
+        values.put("begin", courseBean.getBegin());
+        values.put("end", courseBean.getEnd());
+        values.put("name", courseBean.getName());
+        values.put("location", courseBean.getLocation());
+        values.put("teacher", courseBean.getTeacher());
+        values.put("mod", courseBean.getMod());
+        values.put("color", courseBean.getColor());
         return values;
     }
 
-    public CourseModel contentValuesToClass(ContentValues values) {
-        CourseModel courseModel = new CourseModel();
-        courseModel.setClassId(values.getAsLong("classId"));
-        courseModel.setWeekday(values.getAsInteger("weekday"));
-        courseModel.setBegin(values.getAsInteger("begin"));
-        courseModel.setEnd(values.getAsInteger("end"));
-        courseModel.setName(values.getAsString("name"));
-        courseModel.setLocation(values.getAsString("location"));
-        courseModel.setTeacher(values.getAsString("teacher"));
-        courseModel.setMod(values.getAsInteger("mod"));
-        courseModel.setColor(values.getAsInteger("color"));
-        return courseModel;
+    public CourseBean contentValuesToClass(ContentValues values) {
+        CourseBean courseBean = new CourseBean();
+        courseBean.setClassId(values.getAsLong("classId"));
+        courseBean.setWeekday(values.getAsInteger("weekday"));
+        courseBean.setBegin(values.getAsInteger("begin"));
+        courseBean.setEnd(values.getAsInteger("end"));
+        courseBean.setName(values.getAsString("name"));
+        courseBean.setLocation(values.getAsString("location"));
+        courseBean.setTeacher(values.getAsString("teacher"));
+        courseBean.setMod(values.getAsInteger("mod"));
+        courseBean.setColor(values.getAsInteger("color"));
+        return courseBean;
     }
 
-    public CourseModel cursorToClass(Cursor cursor) {
-        CourseModel courseModel = new CourseModel();
-        courseModel.setClassId(cursor.getLong(cursor.getColumnIndex("classId")));
-        courseModel.setWeekday(cursor.getInt(cursor.getColumnIndex("weekday")));
-        courseModel.setBegin(cursor.getInt(cursor.getColumnIndex("begin")));
-        courseModel.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
-        courseModel.setName(cursor.getString(cursor.getColumnIndex("name")));
-        courseModel.setLocation(cursor.getString(cursor.getColumnIndex("location")));
-        courseModel.setTeacher(cursor.getString(cursor.getColumnIndex("teacher")));
-        courseModel.setMod(cursor.getInt(cursor.getColumnIndex("mod")));
-        courseModel.setColor(cursor.getInt(cursor.getColumnIndex("color")));
-        return courseModel;
+    public CourseBean cursorToClass(Cursor cursor) {
+        CourseBean courseBean = new CourseBean();
+        courseBean.setClassId(cursor.getLong(cursor.getColumnIndex("classId")));
+        courseBean.setWeekday(cursor.getInt(cursor.getColumnIndex("weekday")));
+        courseBean.setBegin(cursor.getInt(cursor.getColumnIndex("begin")));
+        courseBean.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
+        courseBean.setName(cursor.getString(cursor.getColumnIndex("name")));
+        courseBean.setLocation(cursor.getString(cursor.getColumnIndex("location")));
+        courseBean.setTeacher(cursor.getString(cursor.getColumnIndex("teacher")));
+        courseBean.setMod(cursor.getInt(cursor.getColumnIndex("mod")));
+        courseBean.setColor(cursor.getInt(cursor.getColumnIndex("color")));
+        return courseBean;
     }
 
-    public CourseModel getClassModel(long classId) {
+    public CourseBean getClassModel(long classId) {
         return cursorToClass(queryClass(classId));
     }
 
-    public List<CourseModel> getAllClass() {
-        List<CourseModel> list = new ArrayList<>();
+    public List<CourseBean> getAllClass() {
+        List<CourseBean> list = new ArrayList<>();
         Cursor cursor = queryAllClass();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -324,9 +324,12 @@ public class DBManager {
 
     public String queryUserInfo() {
         Cursor cursor = db.rawQuery("SELECT * FROM user WHERE _id >= ?", new String[]{"0"});
-        cursor.moveToLast();
         StringBuilder builder = new StringBuilder();
-        builder.append(cursor.getString(cursor.getColumnIndex("name"))).append(",").append(cursor.getString(cursor.getColumnIndex("password")));
+        if (cursor.getCount() > 0) {
+            cursor.moveToLast();
+            builder.append(cursor.getString(cursor.getColumnIndex("name"))).append(",")
+                    .append(cursor.getString(cursor.getColumnIndex("password")));
+        }
         cursor.close();
         return builder.toString();
     }

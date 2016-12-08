@@ -13,6 +13,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.model.MyUser;
+import me.stupideme.shucampus.view.MainActivity;
 import shem.com.materiallogin.MaterialLoginView;
 import shem.com.materiallogin.MaterialLoginViewListener;
 

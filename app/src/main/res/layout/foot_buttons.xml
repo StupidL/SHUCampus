@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!--<Button-->
+        <!--android:id="@+id/delete"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="start"-->
+        <!--android:background="@null"-->
+        <!--android:text="DELETE"-->
+        <!--android:textColor="@color/colorAccent" />-->
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="end"
+        android:background="@null"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical|end"
+        android:text="SAVE"
+        android:textColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="77dp"
+        android:background="@null"
+        android:gravity="end|center_vertical"
+        android:text="CANCEL"
+        android:textColor="@color/colorAccent" />
+</RelativeLayout>

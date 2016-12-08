@@ -16,11 +16,11 @@ import org.xdty.preference.colorpicker.ColorPickerDialog;
 import org.xdty.preference.colorpicker.ColorPickerSwatch;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.model.CourseModel;
+import me.stupideme.shucampus.model.CourseBean;
 import me.stupideme.shucampus.db.DBManager;
 
 public class CourseAddActivity extends AppCompatActivity {
-    private CourseModel model;
+    private CourseBean model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class CourseAddActivity extends AppCompatActivity {
             }
         });
 
-        model = new CourseModel();
+        model = new CourseBean();
 
         final Spinner weekday = (Spinner) findViewById(R.id.spinner_weekday);
         final AppCompatEditText begin = (AppCompatEditText) findViewById(R.id.edit_begin);
