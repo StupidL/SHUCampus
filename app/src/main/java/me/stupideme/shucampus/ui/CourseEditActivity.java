@@ -15,6 +15,7 @@ import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.ClassListViewAdapter;
 import me.stupideme.shucampus.db.DBManager;
 import me.stupideme.shucampus.model.CourseBean;
+import me.stupideme.shucampus.view.CourseAddActivity;
 
 public class CourseEditActivity extends AppCompatActivity {
 

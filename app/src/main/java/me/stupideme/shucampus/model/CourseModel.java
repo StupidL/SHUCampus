@@ -1,5 +1,7 @@
 package me.stupideme.shucampus.model;
 
+import android.util.Log;
+
 import java.util.List;
 
 import me.stupideme.shucampus.db.DBManager;
@@ -9,6 +11,8 @@ import me.stupideme.shucampus.db.DBManager;
  */
 
 public class CourseModel {
+
+    private static final String TAG = "CourseModel";
     private static CourseModel INSTANCE;
     private DBManager manager;
 
@@ -25,6 +29,7 @@ public class CourseModel {
 
     public void addCourse(CourseBean bean) {
         manager.insertClass(bean);
+        Log.v(TAG, "add course");
     }
 
     public void removeCourse(CourseBean bean) {
@@ -32,7 +37,7 @@ public class CourseModel {
         manager.deleteClass(id);
     }
 
-    public List<CourseBean> autoLoadCourses(){
+    public List<CourseBean> autoLoadCourses() {
         return manager.getAllClass();
     }
 }

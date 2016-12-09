@@ -53,13 +53,13 @@ public class MainPresenter {
         query.order("createdAt");
         query.setMaxCacheAge(TimeUnit.DAYS.toMillis(1));
         query.setSQL(bql);
-//
-//        boolean hasCache = query.hasCachedResult(StupidEvent.class);
-//        if (hasCache) {
-//            query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
-//        } else {
-//            query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
-//        }
+
+        boolean hasCache = query.hasCachedResult(StupidEvent.class);
+        if (hasCache) {
+            query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        } else {
+            query.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
+        }
 
         query.doSQLQuery(new SQLQueryListener<StupidEvent>() {
             @Override

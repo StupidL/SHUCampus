@@ -1,6 +1,5 @@
 package me.stupideme.shucampus.presenter;
 
-import android.graphics.Color;
 import android.util.Log;
 
 import me.stupideme.shucampus.model.CourseBean;
@@ -13,6 +12,7 @@ import me.stupideme.shucampus.view.CourseView;
 
 public class CoursePresenter {
 
+    private static final String TAG = "CoursePresenter";
     private CourseModel mCourseModel;
     private CourseView mCourseView;
     private static CoursePresenter INSTANCE;
@@ -35,10 +35,13 @@ public class CoursePresenter {
             int weekday = Integer.parseInt(courseInfo[0]);
             int begin = Integer.parseInt(courseInfo[1]);
             int end = Integer.parseInt(courseInfo[2]);
-            int mod = Integer.parseInt(courseInfo[3]);
-            String name = courseInfo[4];
-            String location = courseInfo[5];
-            String teacher = courseInfo[6];
+
+            String name = courseInfo[3];
+            String location = courseInfo[4];
+            String teacher = courseInfo[5];
+            int mod = Integer.parseInt(courseInfo[6]);
+            int color = Integer.parseInt(courseInfo[7]);
+
             bean.setWeekday(weekday);
             bean.setBegin(begin);
             bean.setEnd(end);
@@ -46,7 +49,7 @@ public class CoursePresenter {
             bean.setName(name);
             bean.setLocation(location);
             bean.setTeacher(teacher);
-            bean.setColor(Color.GRAY);
+            bean.setColor(color);
             long id = weekday << 6 + begin << 4 + end << 2;
             Log.v("CoursePresenter", "course id = " + id);
             bean.setClassId(id);
@@ -57,6 +60,7 @@ public class CoursePresenter {
 
     public void removeCourse(CourseBean model) {
         mCourseModel.removeCourse(model);
+        Log.v(TAG, "remove Course...");
     }
 
     public void autoLoadCourses() {

@@ -16,6 +16,7 @@
         android:name=".CampusApp"
         android:allowBackup="true"
         android:icon="@mipmap/logo3"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
@@ -64,7 +65,7 @@
             android:label="@string/title_activity_classes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.CourseAddActivity"
+            android:name=".view.CourseAddActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.EventEditActivity"
