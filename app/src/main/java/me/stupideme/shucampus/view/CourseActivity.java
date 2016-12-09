@@ -1,6 +1,7 @@
 package me.stupideme.shucampus.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,8 +33,6 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
 
 
     private final List<RelativeLayout> layouts = new ArrayList<>(7);
-    private int cellWidth;
-    private int cellHeight;
 
     private RelativeLayout layout0;
     private RelativeLayout layout1;
@@ -93,18 +92,12 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
 
         mDialog = new StupidDialog(this, this);
 
-        mPresenter.autoLoadCourses();
     }
 
     @Override
-    public void onWindowFocusChanged(boolean changed) {
-        super.onWindowFocusChanged(changed);
-
-        cellWidth = layouts.get(0).getWidth();
-        cellHeight = layouts.get(0).getHeight() / 13;
-
-        Log.i("width", cellWidth + " " + layouts.get(0).getWidth());
-        Log.i("height", cellHeight + " " + layouts.get(0).getHeight());
+    public void onResume() {
+        super.onResume();
+        mPresenter.autoLoadCourses();
     }
 
     @Override
@@ -135,40 +128,23 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
         createCourse(model);
     }
 
-    private void createCourse(final CourseBean model) {
-
-        final TextView textView = new TextView(this);
-//
-//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellWidth, cellHeight * (model.getEnd() - model.getBegin() + 1));
-//        textView.setLayoutParams(params);
-//        textView.setX(0);
-//        textView.setY(cellHeight * (model.getBegin() - 1));
-
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cellWidth, cellHeight * (model.getEnd() - model.getBegin() + 1));
-        params.width = cellWidth;
-        params.height = cellHeight * (model.getEnd() - model.getBegin() + 1);
-        textView.setId((int) model.getClassId());
-        textView.setLayoutParams(params);
-        textView.setY(cellHeight * (model.getBegin() - 1));
-        textView.setGravity(Gravity.NO_GRAVITY);
-
-        String text = model.getName() + "\n" + model.getLocation() + "\n" + model.getMod();
-        textView.setText(text);
+    private void createCourse(CourseBean model) {
+        TextView textView = new TextView(this);
         textView.setBackgroundColor(model.getColor());
+        textView.setText(model.getName() + "\n" + model.getLocation() + "\n" + model.getTeacher());
+        textView.setTextColor(Color.WHITE);
 
-        textView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                mPresenter.removeCourse(model);
-                layouts.get(0).removeView(textView);
-                layouts.get(0).invalidate();
-                return false;
-            }
-        });
+        RelativeLayout layout = layouts.get(model.getWeekday());
+        int w = layout.getWidth();
+        int h = layout.getHeight() / 13;
+        Log.v(TAG, "layout w : " + w);
+        Log.v(TAG, "layout h : " + h);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(198, 161 * (model.getEnd() - model.getBegin() + 1));
+        params.setMargins(0, 161 * (model.getBegin() - 1), 0, 0);
+        textView.setLayoutParams(params);
+        Log.v(TAG, "margin top : " + h * (model.getBegin() - 1));
+        layout.addView(textView);
 
-        Log.v(TAG, "weekday: " + model.getWeekday());
-        layouts.get(model.getWeekday()).addView(textView);
-        Log.v("CourseActivity", "Created a TextView...");
     }
 
     @Override
