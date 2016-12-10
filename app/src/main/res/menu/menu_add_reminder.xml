@@ -11,7 +11,7 @@
         android:title="Alarm" />
     <item
         android:id="@+id/actions_save"
-        android:icon="@drawable/ic_save_white_24dp"
+        android:icon="@drawable/ic_done_white_24dp"
         android:orderInCategory="90"
         app:showAsAction="ifRoom"
         android:title="Save" />

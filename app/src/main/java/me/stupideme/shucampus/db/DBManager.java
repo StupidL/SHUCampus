@@ -12,7 +12,7 @@ import java.util.List;
 
 import me.stupideme.shucampus.model.AlarmModel;
 import me.stupideme.shucampus.model.CourseBean;
-import me.stupideme.shucampus.model.ReminderModel;
+import me.stupideme.shucampus.model.ReminderBean;
 
 
 /**
@@ -59,13 +59,17 @@ public class DBManager {
         db.insert("reminder", null, values);
     }
 
-    public void insertReminder(ReminderModel model) {
+    public void insertReminder(ReminderBean model) {
         ContentValues values = reminderToContentValues(model);
         db.insert("reminder", null, values);
     }
 
     public void deleteReminder(long reminderId) {
         db.delete("reminder", DBHelper.REMINDER_ID + "=?", new String[]{String.valueOf(reminderId)});
+    }
+
+    public void deleteReminder(ReminderBean bean) {
+        db.delete("reminder", "id = ? and title = ?", new String[]{String.valueOf(bean.getId()), bean.getTitle()});
     }
 
     public void deleteAllReminder() {
@@ -88,15 +92,15 @@ public class DBManager {
         return cursor;
     }
 
-    public ReminderModel contentValuesToReminder(ContentValues values) {
-        ReminderModel reminder = new ReminderModel();
+    public ReminderBean contentValuesToReminder(ContentValues values) {
+        ReminderBean reminder = new ReminderBean();
         reminder.setId(values.getAsLong(DBHelper.REMINDER_ID));
         reminder.setTitle(values.getAsString(DBHelper.REMINDER_TITLE));
         reminder.setContent(values.getAsString(DBHelper.REMINDER_CONTENT));
         return reminder;
     }
 
-    public ContentValues reminderToContentValues(ReminderModel reminder) {
+    public ContentValues reminderToContentValues(ReminderBean reminder) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.REMINDER_ID, reminder.getId());
         values.put(DBHelper.REMINDER_TITLE, reminder.getTitle());
@@ -104,20 +108,20 @@ public class DBManager {
         return values;
     }
 
-    public ReminderModel cursorToReminder(Cursor cursor) {
-        ReminderModel reminder = new ReminderModel();
+    public ReminderBean cursorToReminder(Cursor cursor) {
+        ReminderBean reminder = new ReminderBean();
         reminder.setId(cursor.getLong(cursor.getColumnIndex(DBHelper.REMINDER_ID)));
         reminder.setTitle(cursor.getString(cursor.getColumnIndex(DBHelper.REMINDER_TITLE)));
         reminder.setContent(cursor.getString(cursor.getColumnIndex(DBHelper.REMINDER_CONTENT)));
         return reminder;
     }
 
-    public ReminderModel getReminderModel(long reminderId) {
+    public ReminderBean getReminderModel(long reminderId) {
         return cursorToReminder(queryReminder(reminderId));
     }
 
-    public List<ReminderModel> getAllReminder() {
-        List<ReminderModel> list = new ArrayList<>();
+    public List<ReminderBean> getAllReminder() {
+        List<ReminderBean> list = new ArrayList<>();
         Cursor cursor = queryAllReminder();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

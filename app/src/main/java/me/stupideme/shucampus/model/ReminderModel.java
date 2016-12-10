@@ -1,36 +1,38 @@
 package me.stupideme.shucampus.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.stupideme.shucampus.db.DBManager;
+
 /**
- * Created by 56211 on 2016/8/3.
+ * Created by StupidL on 2016/12/10.
  */
 
 public class ReminderModel {
-    private long id = -1;
-    private String title;
-    private String content;
+    private static ReminderModel INSTANCE;
+    private DBManager manager;
 
-    public long getId() {
-        return id;
+    private ReminderModel() {
+        manager = DBManager.getInstance();
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public static ReminderModel getInstance() {
+        if (INSTANCE == null)
+            INSTANCE = new ReminderModel();
+
+        return INSTANCE;
     }
 
-    public String getTitle() {
-        return title;
+    public void addReminder(ReminderBean bean) {
+        manager.insertReminder(bean);
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void removeReminder(ReminderBean reminderBean) {
+        manager.deleteReminder(reminderBean);
     }
 
-    public String getContent() {
-        return content;
+    public List<ReminderBean> autoLoadReminder(){
+       return manager.getAllReminder();
     }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
 }

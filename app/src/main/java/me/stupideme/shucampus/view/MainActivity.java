@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, CourseActivity.class));
 
         } else if (id == R.id.nav_reminder) {
-
+            startActivity(new Intent(MainActivity.this, ReminderActivity.class));
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_feedback) {

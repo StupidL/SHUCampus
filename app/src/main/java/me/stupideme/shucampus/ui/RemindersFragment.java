@@ -12,11 +12,12 @@ import java.util.List;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.adapter.ReminderRecyclerAdapter;
 import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.ReminderModel;
+import me.stupideme.shucampus.model.ReminderBean;
+import me.stupideme.shucampus.view.ReminderAddActivity;
 
 public class RemindersFragment extends Fragment {
 
-    private List<ReminderModel> list;
+    private List<ReminderBean> list;
     private ReminderRecyclerAdapter adapter;
 
     public RemindersFragment() {
@@ -42,7 +43,7 @@ public class RemindersFragment extends Fragment {
         adapter = new ReminderRecyclerAdapter(list,R.layout.item_reminder,getActivity());
         recyclerView.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,14 +19,12 @@ import java.util.List;
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.model.CourseBean;
 import me.stupideme.shucampus.presenter.CoursePresenter;
-import me.stupideme.shucampus.view.custom.StupidDialog;
 
-public class CourseActivity extends AppCompatActivity implements CourseView, DialogListener {
+public class CourseActivity extends AppCompatActivity implements CourseView{
 
     private static final String TAG = "CourseActivity";
     private static final int REQUEST_CODE_ADD_COURSE = 0x01;
     private CoursePresenter mPresenter;
-    private StupidDialog mDialog;
 
 
     private final List<RelativeLayout> layouts = new ArrayList<>(7);
@@ -60,7 +55,7 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
         ObservableScrollView scrollView = (ObservableScrollView) findViewById(R.id.show_class_scroll_col);
         fab.attachToScrollView(scrollView);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,8 +84,6 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
         Log.v("CourseActivity", "layouts created");
 
         mPresenter = CoursePresenter.getInstance(this);
-
-        mDialog = new StupidDialog(this, this);
 
     }
 
@@ -150,16 +143,6 @@ public class CourseActivity extends AppCompatActivity implements CourseView, Dia
     @Override
     public void onBackPressed() {
         this.finish();
-    }
-
-    @Override
-    public void onCancel() {
-        mDialog.dismiss();
-    }
-
-    @Override
-    public void onSave(String info) {
-        mPresenter.addCourse(info);
     }
 
 }

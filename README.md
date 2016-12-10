@@ -24,10 +24,11 @@ This is an Android application for ShangHai University students.
 ## I am working on it again!
 
 ## Screenshots  
-![one](https://github.com/StupidL/SHUCampus/blob/master/art/shu1.PNG)  
-![two](https://github.com/StupidL/SHUCampus/blob/master/art/shu2.PNG)  
+![one](https://github.com/StupidL/SHUCampus/blob/master/art/shu1.PNG)
 ![three](https://github.com/StupidL/SHUCampus/blob/master/art/shu3.PNG)
+![six](https://github.com/StupidL/SHUCampus/blob/master/art/shu6.png)
 ![four](https://github.com/StupidL/SHUCampus/blob/master/art/shu4.png)
+![five](https://github.com/StupidL/SHUCampus/blob/master/art/shu5.png)
 
 
 ## Email  
@@ -47,4 +48,4 @@ Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an "AS IS" BASIS,  
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
 See the License for the specific language governing permissions and limitations under the License.  
->>>>>>> b93f807158bd2bb65765c9ccf85cf8df192c0fa3
+

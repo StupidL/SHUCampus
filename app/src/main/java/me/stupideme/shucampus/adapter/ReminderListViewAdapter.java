@@ -1,21 +1,17 @@
 package me.stupideme.shucampus.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
 
 import me.stupideme.shucampus.R;
-import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.ReminderModel;
-import me.stupideme.shucampus.ui.ReminderAlarmReceiver;
+import me.stupideme.shucampus.model.ReminderBean;
 
 /**
  * Created by StupidL on 2016/8/11.
@@ -23,10 +19,10 @@ import me.stupideme.shucampus.ui.ReminderAlarmReceiver;
 
 public class ReminderListViewAdapter extends BaseAdapter {
 
-    private List<ReminderModel> list;
+    private List<ReminderBean> list;
     private Context mContext;
 
-    public ReminderListViewAdapter(Context context, List<ReminderModel> list) {
+    public ReminderListViewAdapter(Context context, List<ReminderBean> list) {
         this.list = list;
         this.mContext = context;
     }
@@ -52,7 +48,7 @@ public class ReminderListViewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_reminder, null);
             viewHolder = new ViewHolder();
-            viewHolder.delete = (ImageButton) convertView.findViewById(R.id.reminder_item_delete);
+//            viewHolder.delete = (ImageButton) convertView.findViewById(R.id.reminder_item_delete);
             viewHolder.title = (TextView) convertView.findViewById(R.id.reminder_title);
             viewHolder.content = (TextView) convertView.findViewById(R.id.reminder_content);
             viewHolder.time = (TextView) convertView.findViewById(R.id.reminder_time);
@@ -66,23 +62,23 @@ public class ReminderListViewAdapter extends BaseAdapter {
         calendar.setTimeInMillis(list.get(position).getId());
         viewHolder.time.setText(calendar.getTime().toString());
         final int pos = position;
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                list.remove(pos);
-                notifyDataSetChanged();
-                DBManager.getInstance(mContext).deleteReminder(list.get(pos).getId());
-
-                Intent intent = new Intent(mContext,ReminderAlarmReceiver.class);
-                intent.setAction("me.stupidme.action.UPDATE_ALARM");
-                mContext.sendBroadcast(intent);
-            }
-        });
+//        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                list.remove(pos);
+//                notifyDataSetChanged();
+//                DBManager.getInstance(mContext).deleteReminder(list.get(pos).getId());
+//
+//                Intent intent = new Intent(mContext,ReminderAlarmReceiver.class);
+//                intent.setAction("me.stupidme.action.UPDATE_ALARM");
+//                mContext.sendBroadcast(intent);
+//            }
+//        });
         return convertView;
     }
 
     class ViewHolder {
-        public ImageButton delete;
+//        public ImageButton delete;
         public TextView title;
         public TextView content;
         public TextView time;

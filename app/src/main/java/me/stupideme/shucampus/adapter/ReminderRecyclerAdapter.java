@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.ReminderModel;
+import me.stupideme.shucampus.model.ReminderBean;
 import me.stupideme.shucampus.ui.ReminderAlarmReceiver;
 import me.stupideme.shucampus.ui.ReminderDetailActivity;
 
@@ -27,12 +26,12 @@ import me.stupideme.shucampus.ui.ReminderDetailActivity;
 
 public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecyclerAdapter.ViewHolder> {
 
-    private List<ReminderModel> dataSet;
+    private List<ReminderBean> dataSet;
     private int itemLayout;
     private Calendar calendar;
     private Context context;
 
-    public ReminderRecyclerAdapter(List<ReminderModel> dataSet, int itemLayout, Context context) {
+    public ReminderRecyclerAdapter(List<ReminderBean> dataSet, int itemLayout, Context context) {
         this.dataSet = dataSet;
         this.itemLayout = itemLayout;
         calendar = Calendar.getInstance();
@@ -47,14 +46,14 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final ReminderModel model = dataSet.get(position);
+        final ReminderBean model = dataSet.get(position);
         holder.title.setText(model.getTitle());
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(model);
-            }
-        });
+//        holder.delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                remove(model);
+//            }
+//        });
         holder.content.setText(model.getContent());
         calendar.setTimeInMillis(model.getId());
         int year = calendar.get(Calendar.YEAR);
@@ -77,11 +76,11 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
         });
     }
 
-    public void add(ReminderModel model, int position){
+    public void add(ReminderBean model, int position){
 
     }
 
-    public void remove(ReminderModel model){
+    public void remove(ReminderBean model){
         int position = dataSet.indexOf(model);
         DBManager manager = DBManager.getInstance(context);
         manager.deleteReminder(model.getId());
@@ -101,7 +100,7 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title;
-        public ImageButton delete;
+//        public ImageButton delete;
         public TextView content;
         public TextView time;
         public CardView cardView;
@@ -109,7 +108,7 @@ public class ReminderRecyclerAdapter extends RecyclerView.Adapter<ReminderRecycl
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.reminder_title);
-            delete = (ImageButton) itemView.findViewById(R.id.reminder_item_delete);
+//            delete = (ImageButton) itemView.findViewById(R.id.reminder_item_delete);
             content = (TextView) itemView.findViewById(R.id.reminder_content);
             time = (TextView) itemView.findViewById(R.id.reminder_time);
             cardView = (CardView) itemView.findViewById(R.id.reminder_card);

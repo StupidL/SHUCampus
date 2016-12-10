@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_add_reminder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    android:fitsSystemWindows="true">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <include layout="@layout/toolbar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:padding="16dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/edit_title_layout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay">
+            android:layout_height="wrap_content">
 
-        </android.support.v7.widget.Toolbar>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:gravity="center_vertical|start"
+                android:hint="标题"
+                android:lines="2"
+                android:maxLines="2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </android.support.design.widget.TextInputLayout>
 
-    </android.support.design.widget.AppBarLayout>
-
-
-    <EditText
-        android:id="@+id/edit_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:hint="标题"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <android.support.v4.widget.Space
-        android:id="@+id/reminder_spacer"
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_weight="1">
-
-        <EditText
-            android:id="@+id/edit_content"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="start"
-            android:hint="内容" />
-    </ScrollView>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_title_layout"
+            android:layout_marginTop="16dp"
+            android:scrollbarStyle="insideInset">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</LinearLayout>
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/edit_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:drawableBottom="@null"
+                    android:gravity="start|center_vertical"
+                    android:hint="内容"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            </android.support.design.widget.TextInputLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

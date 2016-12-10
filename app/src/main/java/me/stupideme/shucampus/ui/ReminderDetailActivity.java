@@ -7,7 +7,7 @@ import android.support.v7.widget.AppCompatTextView;
 
 import me.stupideme.shucampus.R;
 import me.stupideme.shucampus.db.DBManager;
-import me.stupideme.shucampus.model.ReminderModel;
+import me.stupideme.shucampus.model.ReminderBean;
 
 public class ReminderDetailActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class ReminderDetailActivity extends AppCompatActivity {
 
         if (id != -1L) {
             DBManager manager = DBManager.getInstance(ReminderDetailActivity.this);
-            ReminderModel model = manager.getReminderModel(id);
+            ReminderBean model = manager.getReminderModel(id);
             String title = model.getTitle();
             String content = model.getContent();
             eventTitle.setText(title);

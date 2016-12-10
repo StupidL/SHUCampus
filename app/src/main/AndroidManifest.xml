@@ -58,7 +58,7 @@
             android:taskAffinity=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.ReminderAddActivity"
+            android:name=".view.ReminderAddActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.CourseEditActivity"
@@ -83,7 +83,7 @@
             android:name=".view.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".view.SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -92,7 +92,13 @@
             android:label="@string/title_activity_mark"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.EventAddActivity" />
-        <activity android:name=".view.CourseActivity"></activity>
+        <activity android:name=".view.CourseActivity" />
+        <activity android:name=".view.ReminderActivity" />
+
+        <receiver
+            android:name=".view.ReminderAlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>
